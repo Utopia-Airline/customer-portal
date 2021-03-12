@@ -1,12 +1,16 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import logo from './logo.svg';
-import './App.css';
+import "./styles/App.scss";
 
-function App() {
+const App = () => {
+  const [count, setCount] = useState(5);
+  useEffect(() => {
+    console.log(count)
+  });
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={logo} className="App-logo" alt="logo"/>
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
@@ -20,7 +24,7 @@ function App() {
         </a>
       </header>
     </div>
-  );
-}
+  )
+};
 
 export default App;

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
-class BookingCreation extends Component {
+const BookingCreation = () => {
 
-    render() {
-        return (
-            <>
-                
-            </>
-        )
-    }
+    return (
+        <>
+            <div>
+                <h1>Create a Booking here</h1>
+            </div>
+        </>
+    )
 }
 
 export default BookingCreation;

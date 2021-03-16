@@ -1,4 +1,6 @@
 import "./styles/App.scss";
+import Header from './layout/Header';
+import Footer from './layout/Footer';
 import {BrowserRouter as Router, Redirect, Switch, Route} from 'react-router-dom';
 import Flights from './components/flights/Flights';
 import Home from './components/home/Home';
@@ -11,6 +13,7 @@ import ProfilePage from "./pages/ProfilePage";
 const App = () => {
   return (
     <Provider store={store}>
+      <Header/>
       {
         <Router>
           <Switch>
@@ -36,6 +39,7 @@ const App = () => {
         <Link to='/Flights' >Flights</Link>
         <Link to='/' ></Link>
         <Link to='/' >Home</Link> */}
+        <Footer/>
     </Provider>
   )
 }

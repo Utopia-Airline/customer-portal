@@ -6,7 +6,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        Home Page
+        <h1>Welcome to Utopia Airlines!</h1>
       </div>
     )
   }

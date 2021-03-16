@@ -1,12 +1,12 @@
 import {GET_SESSION, GET_SESSION_FAILURE, GET_SESSION_SUCCESS, LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS} from "./types";
 import User from "../../models/User";
 
-export interface UserInfo {
+export interface UserLogin {
   username: string;
   password: string;
 }
 
-export const loginStart = (userInfo: UserInfo) => ({
+export const loginStart = (userLogin: UserLogin) => ({
   type: LOGIN
 });
 
@@ -32,13 +32,13 @@ export const getSessionFailure = () => ({
 });
 
 // combine all actions in an asynchronous thunk
-export function login(url: string) {
+export function login(url: string, userLogin: UserLogin) {
   return async (dispatch) => {
-    dispatch(loginStart({username: "admin", password: "password"}))
+    dispatch(loginStart(userLogin))
     try {
       const options = {
         method: 'post',
-        body: JSON.stringify({username: "admin", password: "password"}),
+        body: JSON.stringify(userLogin),
         headers: {
           "Content-type": "application/json; charset=UTF-8"
         }
@@ -46,6 +46,7 @@ export function login(url: string) {
       const res = await fetch(url, options);
       if (res.ok && res.status === 201) {
         dispatch(loginSuccess());
+        dispatch(getAuth(url));
       } else
         dispatch(loginFailure());
     } catch (err) {

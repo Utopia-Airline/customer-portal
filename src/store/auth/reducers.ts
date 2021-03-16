@@ -21,7 +21,7 @@ export default function authReducer(state = initialState, action): AuthState {
     case LOGIN_SUCCESS:
       return {...state, loading: false, hasErrors: false};
     case LOGIN_FAILURE:
-      return {...state, loading: false, hasErrors: true};
+      return {user: null, loading: false, hasErrors: true};
     case GET_SESSION:
       return {...state, loading: true};
     case GET_SESSION_SUCCESS:

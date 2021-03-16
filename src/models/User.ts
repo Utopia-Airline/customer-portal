@@ -3,6 +3,7 @@ export default class User {
   username: string;
   givenName: string;
   familyName: string;
+  email: string;
   phone: string;
   role: {
     id: number;

@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import "./styles/App.scss";
 import {Provider} from "react-redux";
 import {store} from "./store";
+import LoginPage from "./pages/LoginPage";
+import ProfilePage from "./pages/ProfilePage";
 
 
 const App = () => {
@@ -23,6 +25,8 @@ const App = () => {
           </a>
         </header>
       </div>
+      {/*<LoginPage/>*/}
+      {/*<ProfilePage/>*/}
     </Provider>
   )
 };

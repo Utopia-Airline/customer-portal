@@ -10,6 +10,7 @@ import {
 
 const initialState: AuthState = {
   user: null,
+  isLoggedIn: false,
   loading: false,
   hasErrors: false
 }
@@ -17,15 +18,17 @@ const initialState: AuthState = {
 export default function authReducer(state = initialState, action): AuthState {
   switch (action.type) {
     case LOGIN:
-      return {...state, loading: true};
+      return {...state, loading: true, isLoggedIn: false};
     case LOGIN_SUCCESS:
-      return {...state, loading: false, hasErrors: false};
+      console.log("LOGIN_SUCCESS");
+      return {...state, isLoggedIn: true, loading: false, hasErrors: false};
     case LOGIN_FAILURE:
-      return {user: null, loading: false, hasErrors: true};
+      console.log("LOGIN_FAILURE");
+      return {...state, user: null, isLoggedIn: false, loading: false, hasErrors: true};
     case GET_SESSION:
       return {...state, loading: true};
     case GET_SESSION_SUCCESS:
-      return {user: action.payload, loading: false, hasErrors: false}
+      return {...state, user: action.payload, loading: false, hasErrors: false}
     case GET_SESSION_FAILURE:
       return {...state, loading: false, hasErrors: true}
     default:

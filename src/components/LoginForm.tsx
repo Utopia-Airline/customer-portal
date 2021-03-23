@@ -1,14 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Button, Form} from "react-bootstrap";
 import {connect} from "react-redux";
-import {getAuth, login} from "../store/auth/actions";
+import {useHistory} from 'react-router-dom'
+import {login} from "../store/auth/actions";
 
-const LoginForm = ({dispatch, loading, hasErrors, user}) => {
-  useEffect(() => {
-    // dispatch(getAuth(process.env["REACT_APP_SESSION_URL"]));
-    console.log('navigate');
-  }, [user]);
-  // console.log('user', user);
+const LoginForm = ({dispatch, loading, hasErrors, isLoggedIn}) => {
+  const history = useHistory();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   return (
@@ -26,8 +24,14 @@ const LoginForm = ({dispatch, loading, hasErrors, user}) => {
       {/*  <Form.Check type="checkbox" label="save password"/>*/}
       {/*</Form.Group>*/}
       <Button variant="primary" type="button"
-              onClick={e =>
-                dispatch(login(process.env["REACT_APP_SESSION_URL"], {username, password}))}>
+              onClick={() => {
+                dispatch(login(process.env["REACT_APP_SESSION_URL"], {username, password})).then(res => {
+                  if (res)
+                    history.push('/myaccount');
+                  else
+                    console.log('isLoggedIn', isLoggedIn, res);
+                })
+              }}>
         Login
       </Button>
     </Form>
@@ -35,7 +39,7 @@ const LoginForm = ({dispatch, loading, hasErrors, user}) => {
 }
 const mapStateToProps = state => ({
   loading: state.auth.loading,
-  user: state.auth.user,
+  isLoggedIn: state.auth.isLoggedIn,
   hasErrors: state.auth.hasErrors
 });
 export default connect(mapStateToProps)(LoginForm);

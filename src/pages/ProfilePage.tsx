@@ -6,13 +6,12 @@ import {getAuth} from "../store/auth/actions";
 
 const ProfilePage = ({dispatch, loading, hasErrors, user}: UserProps) => {
   useEffect(() => {
-    console.log('get auth');
-    dispatch(getAuth(process.env["REACT_APP_SESSION_URL"]));
-  }, [])
+    console.log('get auth', user);
+    // dispatch(getAuth(process.env["REACT_APP_SESSION_URL"]));
+  }, [user])
   return (
     <div>
-      <h1>USER</h1>
-      {loading && <div>loading posts...</div>}
+      {loading && <div>loading profile...</div>}
       {hasErrors && <div>Unable to display user profile</div>}
       {user &&
       <>

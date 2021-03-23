@@ -4,25 +4,32 @@ import Footer from './layout/Footer';
 import {BrowserRouter as Router, Redirect, Switch, Route} from 'react-router-dom';
 import Flights from './components/flights/Flights';
 import Home from './components/home/Home';
-import {Provider} from "react-redux";
-import {store} from "./store";
+import {connect} from "react-redux";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
+import {useEffect} from "react";
+import {getAuth} from "./store/auth/actions";
+import BookingHistoryPage from "./pages/BookingHistoryPage";
 
 
-const App = () => {
+const App = ({getSession}) => {
+  useEffect(() => {
+    getSession(process.env["REACT_APP_SESSION_URL"])
+  });
   return (
-    <Provider store={store}>
-      <Header/>
+    <>
       {
         <Router>
-          <Switch>
-            <Route exact={true} path="/home" component={Home}/>
-            <Route path="/myaccount" component={ProfilePage}/>
-            <Route path="/login" component={LoginPage}/>
-            <Route exact={true} path="/"> <Redirect to="/home"/> </Route>
-            <Route exact={true} path="/flights" component={Flights}/>
-            {/*
+          <Header/>
+          <div className='full-page'>
+            <Switch>
+              <Route exact={true} path="/home" component={Home}/>
+              <Route path="/myaccount" component={ProfilePage}/>
+              <Route path="/login" component={LoginPage}/>
+              <Route path="/bookings" component={BookingHistoryPage}/>
+              <Route exact={true} path="/"> <Redirect to="/home"/> </Route>
+              <Route exact={true} path="/flights" component={Flights}/>
+              {/*
               <Route path="/signup" component={Signup} />
               <Route exact={true} path="/bookings" component={Bookings} />
               <Route path='bookings/add' component={BookingAdd} />
@@ -30,17 +37,16 @@ const App = () => {
               <Route exact={true} path='users' component={users} />
               <Route path='users/add' component={UserCreation} />
               <Route path='users/:id' component={UserById} />  */}
-          </Switch>
+            </Switch>
+          </div>
+          <Footer/>
         </Router>
       }
-      {/* <Link to="/" >Home</Link>
-        <Link to='/Login'>Login</Link>
-        <Link to='/Booking' >Booking</Link>
-        <Link to='/Flights' >Flights</Link>
-        <Link to='/' ></Link>
-        <Link to='/' >Home</Link> */}
-        <Footer/>
-    </Provider>
+    </>
   )
 }
-export default App;
+const mapDispatchToProps = {
+  getSession: getAuth
+}
+// export default App;
+export default connect(null, mapDispatchToProps)(App);

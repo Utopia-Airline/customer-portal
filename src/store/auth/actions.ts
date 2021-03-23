@@ -1,5 +1,6 @@
 import {GET_SESSION, GET_SESSION_FAILURE, GET_SESSION_SUCCESS, LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS} from "./types";
 import User from "../../models/User";
+import {Dispatch} from "react";
 
 export interface UserLogin {
   username: string;
@@ -46,11 +47,15 @@ export function login(url: string, userLogin: UserLogin) {
       const res = await fetch(url, options);
       if (res.ok && res.status === 201) {
         dispatch(loginSuccess());
-        dispatch(getAuth(url));
-      } else
+        return true;
+      } else {
         dispatch(loginFailure());
+        return false;
+      }
+
     } catch (err) {
       dispatch(loginFailure());
+      return false;
     }
   }
 }

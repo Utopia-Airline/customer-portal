@@ -5,7 +5,7 @@ import '../styles/components/LoginPage.scss';
 const LoginPage = () => {
   return (
     <div className='login-page'>
-      <div className='login-form'><LoginForm/></div>
+      <div className='login-form m-5'><LoginForm/></div>
     </div>
 
   );

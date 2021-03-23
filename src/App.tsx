@@ -8,6 +8,8 @@ import {Provider} from "react-redux";
 import {store} from "./store";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
+import SignupPage from "./pages/SignupPage";
+import UpdatePage from "./pages/UpdatePage";
 
 
 const App = () => {
@@ -19,6 +21,8 @@ const App = () => {
           <Switch>
             <Route exact={true} path="/home" component={Home}/>
             <Route path="/myaccount" component={ProfilePage}/>
+            <Route path="/myaccount/update" component={UpdatePage}/>
+            <Route path="/signup" component={SignupPage}/>
             <Route path="/login" component={LoginPage}/>
             <Route exact={true} path="/"> <Redirect to="/home"/> </Route>
             <Route exact={true} path="/flights" component={Flights}/>

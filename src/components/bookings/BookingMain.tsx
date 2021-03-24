@@ -1,10 +1,11 @@
 import React from 'react';
 import Booking from "../../models/Booking";
+import LoadingSpinner from "../shared/LoadingSpinner";
 
 const BookingMain = ({className, booking, loading, hasErrors}: BookingProps) => {
     return (
       <div className={className}>
-        {loading && <div>loading your booking ...</div>}
+        {loading && <LoadingSpinner className="text-center m-5"/>}
         {!loading && hasErrors && <div>Unable to load the booking</div>}
         {!loading && booking &&
         <div className='m-5'>

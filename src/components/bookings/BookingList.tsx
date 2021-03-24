@@ -2,11 +2,12 @@ import React from 'react';
 import '../../styles/components/booking/bookingSidebar.scss';
 import Booking from "../../models/Booking";
 import {Badge, ListGroup} from "react-bootstrap";
+import LoadingSpinner from "../shared/LoadingSpinner";
 
 const BookingList = ({className, bookings, loading, hasErrors, loadBooking}: BookingProps) => {
   return (
     <div className={className}>
-      {loading && <div>loading your bookings ...</div>}
+      {loading && <LoadingSpinner className="text-center"/>}
       {!loading && hasErrors && <div>Unable to load bookings</div>}
       <ListGroup>
         {!loading && bookings && bookings.map((booking, i) => (

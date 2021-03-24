@@ -16,30 +16,31 @@ import BookingPage from "./pages/BookingPage";
 
 const App = ({getSession, isLoggedIn, loading}) => {
   useEffect(() => {
+    console.log('loading', loading);
     getSession(process.env["REACT_APP_SESSION_URL"])
   }, []);
   return (
     <>
-      {
-        <Router>
-          <Header/>
-          <div className='full-page'>
-            <Switch>
-              <Route exact={true} path="/home" component={Home}/>
-              <Route path="/myaccount/update" component={UpdatePage}/>
-              <Route path="/bookings">
-                {isLoggedIn ? <BookingPage/> : <Redirect to='/login'/>}
-              </Route>
-              <Route path="/myaccount">
-                {isLoggedIn ? <ProfilePage/> : <Redirect to='/login'/>}
-              </Route>
-              <Route path="/login">
-                {!isLoggedIn ? <LoginPage/> : <Redirect to='/myaccount'/>}
-              </Route>
-              <Route path="/signup" component={SignupPage}/>
-              <Route exact={true} path="/"> <Redirect to="/home"/> </Route>
-              <Route exact={true} path="/flights" component={Flights}/>
-              {/*
+      {!loading &&
+      <Router>
+        <Header/>
+        <div className='full-page'>
+          <Switch>
+            <Route exact={true} path="/home" component={Home}/>
+            <Route path="/myaccount/update" component={UpdatePage}/>
+            <Route path="/bookings">
+              {isLoggedIn ? <BookingPage/> : <Redirect to='/login'/>}
+            </Route>
+            <Route path="/myaccount">
+              {isLoggedIn ? <ProfilePage/> : <Redirect to='/login'/>}
+            </Route>
+            <Route path="/login">
+              {!isLoggedIn ? <LoginPage/> : <Redirect to='/myaccount'/>}
+            </Route>
+            <Route path="/signup" component={SignupPage}/>
+            <Route exact={true} path="/"> <Redirect to="/home"/> </Route>
+            <Route exact={true} path="/flights" component={Flights}/>
+            {/*
               <Route path="/signup" component={Signup} />
               <Route exact={true} path="/bookings" component={Bookings} />
               <Route path='bookings/add' component={BookingAdd} />
@@ -47,10 +48,10 @@ const App = ({getSession, isLoggedIn, loading}) => {
               <Route exact={true} path='users' component={users} />
               <Route path='users/add' component={UserCreation} />
               <Route path='users/:id' component={UserById} />  */}
-            </Switch>
-          </div>
-          <Footer/>
-        </Router>
+          </Switch>
+        </div>
+        <Footer/>
+      </Router>
       }
     </>
   )

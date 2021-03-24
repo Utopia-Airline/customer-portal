@@ -20,7 +20,7 @@ import {
 const initialState: AuthState = {
   user: null,
   isLoggedIn: false,
-  loading: false,
+  loading: true,
   hasErrors: false
 }
 
@@ -37,11 +37,11 @@ export default function authReducer(state = initialState, action): AuthState {
     case GET_SESSION_SUCCESS:
       return {...state, user: action.payload, isLoggedIn: true, loading: false, hasErrors: false}
     case GET_SESSION_FAILURE:
-      return {...state, loading: false, hasErrors: true};
+      return {...state, loading: false, isLoggedIn: false, hasErrors: true};
     case LOGOUT:
       return {...state, loading: true, hasErrors: false};
     case LOGOUT_SUCCESS:
-      return {user: null, isLoggedIn: false, loading: false,  hasErrors: false};
+      return {user: null, isLoggedIn: false, loading: false, hasErrors: false};
     case LOGOUT_FAILURE:
       return {...state, loading: false, hasErrors: true};
     case UPDATE_USER:

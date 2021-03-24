@@ -19,7 +19,7 @@ const Header = ({dispatch, isLoggedIn, user}) => {
 
         </Nav>
         { user && <Nav>
-          <NavDropdown title="User" alignRight id="collasible-nav-dropdown">
+          <NavDropdown title={user.username} alignRight id="collasible-nav-dropdown">
             <NavDropdown.Item as={Link} to='/myAccount'>My Account</NavDropdown.Item>
             <NavDropdown.Item as={Link} to='/bookings'>My Bookings</NavDropdown.Item>
             <NavDropdown.Item 

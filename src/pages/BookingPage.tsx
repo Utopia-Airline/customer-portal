@@ -21,7 +21,6 @@ const BookingPage = (
   function loadBooking(id) {
     console.log('load booking', id);
     dispatch(getBookingById(`${process.env["REACT_APP_BOOKING_URL"]}`, id));
-
     console.log(mainRef);
     // @ts-ignore
     mainRef.current.scrollIntoView();

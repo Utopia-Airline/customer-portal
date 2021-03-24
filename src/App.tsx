@@ -10,9 +10,10 @@ import ProfilePage from "./pages/ProfilePage";
 import {useEffect} from "react";
 import {getAuth} from "./store/auth/actions";
 import BookingHistoryPage from "./pages/BookingPage";
+import BookingPage from "./pages/BookingPage";
 
 
-const App = ({getSession}) => {
+const App = ({getSession, isLoggedIn}) => {
   useEffect(() => {
     getSession(process.env["REACT_APP_SESSION_URL"])
   });
@@ -24,9 +25,15 @@ const App = ({getSession}) => {
           <div className='full-page'>
             <Switch>
               <Route exact={true} path="/home" component={Home}/>
-              <Route path="/myaccount" component={ProfilePage}/>
-              <Route path="/login" component={LoginPage}/>
-              <Route path="/bookings" component={BookingHistoryPage}/>
+              <Route path="/myaccount">
+                {isLoggedIn ? <ProfilePage/> : <Redirect to='/login'/>}
+              </Route>
+              <Route path="/login">
+                {!isLoggedIn ? <LoginPage/> : <Redirect to='/myaccount'/>}
+              </Route>
+              <Route path="/bookings">
+                {isLoggedIn ? <BookingPage/> : <Redirect to='/login'/>}
+              </Route>
               <Route exact={true} path="/"> <Redirect to="/home"/> </Route>
               <Route exact={true} path="/flights" component={Flights}/>
               {/*
@@ -44,9 +51,13 @@ const App = ({getSession}) => {
       }
     </>
   )
-}
+};
+const mapStateToProps = state => ({
+    isLoggedIn: state.auth.isLoggedIn
+  }
+);
 const mapDispatchToProps = {
   getSession: getAuth
 }
 // export default App;
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

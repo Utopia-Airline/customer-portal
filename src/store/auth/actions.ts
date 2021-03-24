@@ -67,7 +67,10 @@ export function getAuth(url: string) {
       const res = await fetch(url);
       if (res.ok) {
         const user = await res.json();
-        dispatch(getSessionSuccess(user));
+        if (user)
+          dispatch(getSessionSuccess(user));
+        else
+          dispatch(getSessionFailure());
       } else
         dispatch(getSessionFailure());
     } catch (err) {

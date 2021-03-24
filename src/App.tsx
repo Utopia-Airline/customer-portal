@@ -9,7 +9,6 @@ import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
 import {useEffect} from "react";
 import {getAuth} from "./store/auth/actions";
-import BookingHistoryPage from "./pages/BookingPage";
 import BookingPage from "./pages/BookingPage";
 
 

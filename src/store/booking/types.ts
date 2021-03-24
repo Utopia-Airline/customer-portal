@@ -10,6 +10,7 @@ export interface BookingState {
 export const GET_BOOKING = 'GET_BOOKING';
 export const GET_BOOKING_SUCCESS = 'GET_BOOKING_SUCCESS';
 export const GET_BOOKING_FAILURE = 'GET_BOOKING_FAILURE';
+export const CLEAR_BOOKING = 'CLEAR_BOOKING';
 
 interface GetBookingAction {
   type: typeof GET_BOOKING

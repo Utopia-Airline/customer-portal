@@ -6,13 +6,14 @@ import Booking from "../models/Booking";
 import '../styles/components/booking/bookingPage.scss';
 import BookingMain from "../components/bookings/BookingMain";
 import BookingList from "../components/bookings/BookingList";
-import {getBookingById} from "../store/booking/actions";
+import {clearBooking, getBookingById} from "../store/booking/actions";
 
 const BookingPage = (
   {dispatch, loading, hasErrors, bookings, userId, booking, bookingHasErrors, bookingLoading}:
     BookingProps) => {
   useEffect(() => {
     console.log('get all bookings', userId);
+    dispatch(clearBooking())
     dispatch(getAllBookings(`${process.env["REACT_APP_BOOKING_URL"]}`));
   }, [])
 

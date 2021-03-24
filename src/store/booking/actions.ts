@@ -1,5 +1,5 @@
 import Booking from "../../models/Booking";
-import {GET_BOOKING, GET_BOOKING_FAILURE, GET_BOOKING_SUCCESS} from "./types";
+import {CLEAR_BOOKING, GET_BOOKING, GET_BOOKING_FAILURE, GET_BOOKING_SUCCESS} from "./types";
 
 export const getBooking = () => ({
   type: GET_BOOKING
@@ -14,7 +14,10 @@ export const getBookingFailure = () => ({
   type: GET_BOOKING_FAILURE
 });
 
-// combine all actions in an asynchronous thunk
+export const clearBooking = () => ({
+  type: CLEAR_BOOKING
+});
+
 export function getBookingById(url: string, id: number) {
   return async (dispatch) => {
     dispatch(getBooking())

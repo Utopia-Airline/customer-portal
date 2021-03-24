@@ -9,7 +9,7 @@ const ProfilePage = ({dispatch, loading, hasErrors, user, isLoggedIn}: UserProps
     console.log('get auth', user);
     if (isLoggedIn && !user)
       dispatch(getAuth(process.env["REACT_APP_SESSION_URL"]));
-  }, [user])
+  }, [])
   return (
     <div>
       {loading && <div>loading profile...</div>}

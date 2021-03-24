@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {connect} from "react-redux";
 import "../styles/components/ProfilePage.scss";
 import {getAllBookings} from "../store/bookings/actions";
@@ -11,6 +11,7 @@ import {clearBooking, getBookingById} from "../store/booking/actions";
 const BookingPage = (
   {dispatch, loading, hasErrors, bookings, userId, booking, bookingHasErrors, bookingLoading}:
     BookingProps) => {
+  const mainRef = useRef<HTMLDivElement>();
   useEffect(() => {
     console.log('get all bookings', userId);
     dispatch(clearBooking())
@@ -20,13 +21,19 @@ const BookingPage = (
   function loadBooking(id) {
     console.log('load booking', id);
     dispatch(getBookingById(`${process.env["REACT_APP_BOOKING_URL"]}`, id));
+
+    console.log(mainRef);
+    // @ts-ignore
+    mainRef.current.scrollIntoView();
   }
 
   return (
     <div className='booking-page'>
       <BookingList className='sidebar' loadBooking={(id) => loadBooking(id)}
                    bookings={bookings} loading={loading} hasErrors={hasErrors}/>
-      <BookingMain className='main' booking={booking} hasErrors={bookingHasErrors} loading={bookingLoading}/>
+      <div className='main' ref={mainRef} >
+        <BookingMain className='main' booking={booking} hasErrors={bookingHasErrors} loading={bookingLoading}/>
+      </div>
     </div>
   );
 }

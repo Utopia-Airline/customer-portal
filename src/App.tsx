@@ -7,6 +7,8 @@ import Home from './components/home/Home';
 import {connect} from "react-redux";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
+import SignupPage from "./pages/SignupPage";
+import UpdatePage from "./pages/UpdatePage";
 import {useEffect} from "react";
 import {getAuth} from "./store/auth/actions";
 import BookingPage from "./pages/BookingPage";
@@ -24,6 +26,7 @@ const App = ({getSession, isLoggedIn, loading}) => {
           <div className='full-page'>
             <Switch>
               <Route exact={true} path="/home" component={Home}/>
+              <Route path="/myaccount/update" component={UpdatePage}/>
               <Route path="/bookings">
                 {isLoggedIn ? <BookingPage/> : <Redirect to='/login'/>}
               </Route>
@@ -33,6 +36,7 @@ const App = ({getSession, isLoggedIn, loading}) => {
               <Route path="/login">
                 {!isLoggedIn ? <LoginPage/> : <Redirect to='/myaccount'/>}
               </Route>
+              <Route path="/signup" component={SignupPage}/>
               <Route exact={true} path="/"> <Redirect to="/home"/> </Route>
               <Route exact={true} path="/flights" component={Flights}/>
               {/*

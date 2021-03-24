@@ -1,8 +1,10 @@
 import React, {useEffect} from 'react';
 import {connect} from "react-redux";
+import {Button} from "react-bootstrap";
 import User from "../models/User";
 import "../styles/components/ProfilePage.scss";
 import {getAuth} from "../store/auth/actions";
+import {Link} from 'react-router-dom';
 
 const ProfilePage = ({dispatch, loading, hasErrors, user, isLoggedIn}: UserProps) => {
   useEffect(() => {
@@ -32,6 +34,9 @@ const ProfilePage = ({dispatch, loading, hasErrors, user, isLoggedIn}: UserProps
                 <div className="d-inline">{user?.role?.name}</div>
               </div>
             </div>
+          </div>
+          <div className="col">
+            <Button as={Link} to='/myaccount/update'>Update</Button>
           </div>
         </div>
         <div className="user-tasks">

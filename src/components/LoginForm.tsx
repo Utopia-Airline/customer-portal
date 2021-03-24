@@ -3,6 +3,7 @@ import {Button, Form} from "react-bootstrap";
 import {connect} from "react-redux";
 import {useHistory} from 'react-router-dom'
 import {login} from "../store/auth/actions";
+import {Link} from 'react-router-dom'
 
 const LoginForm = ({dispatch, loading, hasErrors, isLoggedIn}) => {
   const history = useHistory();
@@ -34,6 +35,7 @@ const LoginForm = ({dispatch, loading, hasErrors, isLoggedIn}) => {
               }}>
         Login
       </Button>
+      <Link className="d-flex"to="/signup">Signup</Link>
     </Form>
   );
 }

@@ -4,22 +4,40 @@ import Footer from './layout/Footer';
 import {BrowserRouter as Router, Redirect, Switch, Route} from 'react-router-dom';
 import Flights from './components/flights/Flights';
 import Home from './components/home/Home';
-import {Provider} from "react-redux";
-import {store} from "./store";
+import {connect} from "react-redux";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
+import SignupPage from "./pages/SignupPage";
+import UpdatePage from "./pages/UpdatePage";
+import {useEffect} from "react";
+import {getAuth} from "./store/auth/actions";
+import BookingPage from "./pages/BookingPage";
 
 
-const App = () => {
+const App = ({getSession, isLoggedIn, loading}) => {
+  useEffect(() => {
+    console.log('loading', loading);
+    getSession(process.env["REACT_APP_SESSION_URL"])
+  }, []);
   return (
-    <Provider store={store}>
-      <Header/>
-      {
-        <Router>
+    <>
+      {!loading &&
+      <Router>
+        <Header/>
+        <div className='full-page'>
           <Switch>
             <Route exact={true} path="/home" component={Home}/>
-            <Route path="/myaccount" component={ProfilePage}/>
-            <Route path="/login" component={LoginPage}/>
+            <Route path="/myaccount/update" component={UpdatePage}/>
+            <Route path="/bookings">
+              {isLoggedIn ? <BookingPage/> : <Redirect to='/login'/>}
+            </Route>
+            <Route path="/myaccount">
+              {isLoggedIn ? <ProfilePage/> : <Redirect to='/login'/>}
+            </Route>
+            <Route path="/login">
+              {!isLoggedIn ? <LoginPage/> : <Redirect to='/myaccount'/>}
+            </Route>
+            <Route path="/signup" component={SignupPage}/>
             <Route exact={true} path="/"> <Redirect to="/home"/> </Route>
             <Route exact={true} path="/flights" component={Flights}/>
             {/*
@@ -31,16 +49,20 @@ const App = () => {
               <Route path='users/add' component={UserCreation} />
               <Route path='users/:id' component={UserById} />  */}
           </Switch>
-        </Router>
-      }
-      {/* <Link to="/" >Home</Link>
-        <Link to='/Login'>Login</Link>
-        <Link to='/Booking' >Booking</Link>
-        <Link to='/Flights' >Flights</Link>
-        <Link to='/' ></Link>
-        <Link to='/' >Home</Link> */}
+        </div>
         <Footer/>
-    </Provider>
+      </Router>
+      }
+    </>
   )
+};
+const mapStateToProps = state => ({
+    isLoggedIn: state.auth.isLoggedIn,
+    loading: state.auth.loading
+  }
+);
+const mapDispatchToProps = {
+  getSession: getAuth
 }
-export default App;
+// export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);

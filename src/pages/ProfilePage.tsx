@@ -1,18 +1,21 @@
 import React, {useEffect} from 'react';
 import {connect} from "react-redux";
+import {Button} from "react-bootstrap";
 import User from "../models/User";
 import "../styles/components/ProfilePage.scss";
 import {getAuth} from "../store/auth/actions";
+import {Link} from 'react-router-dom';
+import LoadingSpinner from "../components/shared/LoadingSpinner";
 
-const ProfilePage = ({dispatch, loading, hasErrors, user}: UserProps) => {
+const ProfilePage = ({dispatch, loading, hasErrors, user, isLoggedIn}: UserProps) => {
   useEffect(() => {
-    console.log('get auth');
-    dispatch(getAuth(process.env["REACT_APP_SESSION_URL"]));
+    console.log('get auth', user);
+    if (isLoggedIn && !user)
+      dispatch(getAuth(process.env["REACT_APP_SESSION_URL"]));
   }, [])
   return (
     <div>
-      <h1>USER</h1>
-      {loading && <div>loading posts...</div>}
+      {loading && <LoadingSpinner className="text-center m-5"/>}
       {hasErrors && <div>Unable to display user profile</div>}
       {user &&
       <>
@@ -33,6 +36,9 @@ const ProfilePage = ({dispatch, loading, hasErrors, user}: UserProps) => {
               </div>
             </div>
           </div>
+          <div className="col">
+            <Button as={Link} to='/myaccount/update'>Update</Button>
+          </div>
         </div>
         <div className="user-tasks">
           <div className="h2"> There is no active task for today</div>
@@ -48,11 +54,13 @@ interface UserProps {
   loading?: boolean;
   user?: User;
   hasErrors?: boolean;
+  isLoggedIn: boolean;
 }
 
 const mapStateToProps = state => ({
   loading: state.auth.loading,
   user: state.auth.user,
-  hasErrors: state.auth.hasErrors
+  hasErrors: state.auth.hasErrors,
+  isLoggedIn: state.auth.isLoggedIn
 });
 export default connect(mapStateToProps)(ProfilePage);

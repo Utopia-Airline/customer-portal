@@ -15,7 +15,7 @@ export const getBookingsFailure = () => ({
 });
 
 // combine all actions in an asynchronous thunk
-export function fetchBookings(url: string) {
+export function getAllBookings(url: string) {
   return async (dispatch) => {
     dispatch(getBookings())
     try {

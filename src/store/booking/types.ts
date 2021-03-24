@@ -6,7 +6,7 @@ export interface BookingState {
   hasErrors: boolean;
 }
 
-/// GET Booking by id
+/// GET BookingMain by id
 export const GET_BOOKING = 'GET_BOOKING';
 export const GET_BOOKING_SUCCESS = 'GET_BOOKING_SUCCESS';
 export const GET_BOOKING_FAILURE = 'GET_BOOKING_FAILURE';

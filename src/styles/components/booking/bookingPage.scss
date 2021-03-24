@@ -1,3 +1,29 @@
+.booking-page {
+  position       : relative;
+  display        : flex;
+  flex-direction : row;
+}
+
+.sidebar {
+  background-color : #1a1a1a;
+  position         : static;
+  left             : 0;
+  top              : 0;
+  bottom           : 0;
+  //padding          : 20px 10px 10px;
+  box-shadow       : inset -1px 0 0 rgba(0, 0, 0, .1);
+  min-height       : 100vh;
+  //z-index          : -1;
+  width            : 25%;
+  display          : flex;
+  flex-direction   : column;
+}
+
+.main {
+  flex : 1;
+  //margin-left : 25%;
+}
+
 .booking-item {
   display : flex;
   color   : #212529;
@@ -48,13 +74,16 @@
 
 .list-group {
   .list-group-item {
-    border           : none;
-    background-color : #F7F7F8;
-    box-shadow       : rgb(194, 194, 194) 0 1px 2px;
+    //border           : none;
+    //background-color : #F7F7F8;
+    //box-shadow       : rgb(194, 194, 194) 0 1px 2px;
+    border-radius : 0;
+    cursor        : pointer;
+    transition    : background-color linear 0.1s;
 
     &:hover, &:active, &:focus {
-      border     : 0.04rem solid rgba(0, 0, 0, 0.2);
-      box-shadow : 2px 2px 5px 0 rgba(0, 0, 0, 0.2);
+      background-color : darken(#FFFFFF, 15);
     }
   }
 }
+

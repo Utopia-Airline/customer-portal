@@ -4,10 +4,11 @@ import User from "../models/User";
 import "../styles/components/ProfilePage.scss";
 import {getAuth} from "../store/auth/actions";
 
-const ProfilePage = ({dispatch, loading, hasErrors, user}: UserProps) => {
+const ProfilePage = ({dispatch, loading, hasErrors, user, isLoggedIn}: UserProps) => {
   useEffect(() => {
     console.log('get auth', user);
-    // dispatch(getAuth(process.env["REACT_APP_SESSION_URL"]));
+    if (isLoggedIn && !user)
+      dispatch(getAuth(process.env["REACT_APP_SESSION_URL"]));
   }, [user])
   return (
     <div>
@@ -47,11 +48,13 @@ interface UserProps {
   loading?: boolean;
   user?: User;
   hasErrors?: boolean;
+  isLoggedIn: boolean;
 }
 
 const mapStateToProps = state => ({
   loading: state.auth.loading,
   user: state.auth.user,
-  hasErrors: state.auth.hasErrors
+  hasErrors: state.auth.hasErrors,
+  isLoggedIn: state.auth.isLoggedIn
 });
 export default connect(mapStateToProps)(ProfilePage);

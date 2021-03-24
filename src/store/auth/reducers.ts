@@ -20,10 +20,8 @@ export default function authReducer(state = initialState, action): AuthState {
     case LOGIN:
       return {...state, loading: true, isLoggedIn: false};
     case LOGIN_SUCCESS:
-      console.log("LOGIN_SUCCESS");
       return {...state, isLoggedIn: true, loading: false, hasErrors: false};
     case LOGIN_FAILURE:
-      console.log("LOGIN_FAILURE");
       return {...state, user: null, isLoggedIn: false, loading: false, hasErrors: true};
     case GET_SESSION:
       return {...state, loading: true};

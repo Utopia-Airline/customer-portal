@@ -47,7 +47,7 @@ const AddUserForm = ({dispatch, loading, hasErrors, user}) => {
                     onClick={e => 
                         dispatch(addUser(process.env["REACT_APP_USERS_URL"], {username, givenName, familyName, role, email, phone, password}))}
                         >
-                            Submit
+                            Signup
                         </Button>
         </Form>
   );

@@ -7,7 +7,6 @@ const LoginPage = () => {
     <div className='login-page'>
       <div className='login-form m-5'><LoginForm/></div>
     </div>
-
   );
 }
 

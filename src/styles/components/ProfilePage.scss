@@ -1,8 +1,9 @@
 .user-profile {
-  display       : flex;
-  border-bottom : 1px solid #e0e4e7;
-  padding       : 20px;
-  color         : #333333;
+  display          : flex;
+  border-bottom    : 1px solid #e0e4e7;
+  padding          : 20px;
+  color            : #333333;
+  background-color : #FFFFFF;
 
   .pic {
     color           : #343A40;
@@ -16,6 +17,7 @@
   display          : flex;
   position         : relative;
   background-color : #F7F7F8;
+  min-height       : 100vh;
   color            : #333333;
   justify-content  : center;
   padding-top      : 100px;
@@ -26,6 +28,6 @@
 }
 
 .text-gray-light {
-  color : #8f9ea8;
-  font-size: 14px;
+  color     : #8f9ea8;
+  font-size : 14px;
 }

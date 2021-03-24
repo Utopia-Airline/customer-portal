@@ -9,6 +9,13 @@ module.exports = function (app) {
     })
   );
   app.use(
+    '/api/users',
+    createProxyMiddleware({
+      target: 'http://localhost:8081',
+      changeOrigin: true,
+    })
+  );
+  app.use(
     '/api/bookings',
     createProxyMiddleware({
       target: 'http://localhost:3000',

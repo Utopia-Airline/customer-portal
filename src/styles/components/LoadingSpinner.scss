@@ -1,0 +1,8 @@
+.spinner-border{
+  width: 75px;
+  height: 75px;
+}
+.slow-spin {
+  -webkit-animation: fa-spin 2s infinite ease-in-out;
+  animation: fa-spin 2s infinite ease-in-out;
+}

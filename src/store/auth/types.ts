@@ -2,6 +2,7 @@ import User from "../../models/User";
 
 export interface AuthState {
   user: User;
+  isLoggedIn: boolean;
   loading: boolean;
   hasErrors: boolean;
 }

@@ -15,6 +15,7 @@ import {
   ADD_USER_FAILURE
 } from "./types";
 import User from "../../models/User";
+import {Dispatch} from "react";
 
 export interface UserLogin {
   username: string;
@@ -26,7 +27,7 @@ export interface UserUpdate {
   givenName: string;
   familyName: string;
   email: string;
-  phoneNumber: string;
+  phone: string;
   password: string;
 }
 
@@ -36,7 +37,7 @@ export interface UserAdd {
   familyName: string;
   role: string;
   email: string;
-  phoneNumber: string;
+  phone: string;
   password: string;
 }
 
@@ -117,11 +118,15 @@ export function login(url: string, userLogin: UserLogin) {
       const res = await fetch(url, options);
       if (res.ok && res.status === 201) {
         dispatch(loginSuccess());
-        dispatch(getAuth(url));
-      } else
+        return true;
+      } else {
         dispatch(loginFailure());
+        return false;
+      }
+
     } catch (err) {
       dispatch(loginFailure());
+      return false;
     }
   }
 }
@@ -164,6 +169,7 @@ export function logout(url: string){
 export function updateUser(url: string, userUpdate: UserUpdate){
   return async (dispatch) => {
     dispatch(updateUserStart());
+    console.log(userUpdate);
     try {
       const options = {
         method: 'put',
@@ -173,6 +179,7 @@ export function updateUser(url: string, userUpdate: UserUpdate){
         }
       }
       const res = await fetch(url, options);
+      console.log(res);
       if(res.ok && res.status === 200) {
         const user = await res.json();
         dispatch(updateUserSuccess(user));
@@ -180,6 +187,7 @@ export function updateUser(url: string, userUpdate: UserUpdate){
         dispatch(updateUserFailure());
       }
     } catch (err) {
+      console.log(err);
       dispatch(updateUserFailure());
     }
   }

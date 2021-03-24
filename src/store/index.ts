@@ -4,6 +4,8 @@ import {chatReducer} from "./chat/reducers";
 import thunk from "redux-thunk";
 import bookingsReducer from "./bookings/reducers";
 import bookingReducer from "./booking/reducers";
+import flightsReducer from "./flights/reducers";
+import flightReducer from "./flight/reducers";
 import authReducer from "./auth/reducers";
 
 const rootReducer = combineReducers({
@@ -11,7 +13,9 @@ const rootReducer = combineReducers({
   chat: chatReducer,
   auth: authReducer,
   bookings: bookingsReducer,
-  booking: bookingReducer
+  booking: bookingReducer,
+  flights: flightsReducer,
+  flight: flightReducer
 })
 
 export type RootState = ReturnType<typeof rootReducer>;

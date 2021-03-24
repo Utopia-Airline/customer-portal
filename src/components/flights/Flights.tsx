@@ -1,15 +1,18 @@
 import { Component } from "react";
 import { render } from "react-dom";
+import { connect } from "react-redux";
+import FlightsListPage from "../../pages/FlightsListPage";
 
-class Flights extends Component {
-
-  render() {
-    return (
-      <div>
-        Flights page
-      </div>
-    )
-  }
+const Flights = () => {
+  return (
+    <div>
+      <div className="FlightsListPage"><FlightsListPage/></div>
+    </div>
+  )
 }
-
-export default Flights;
+const mapStateToProps = state => ({
+  flights: state.flights.flights,
+  loading: state.flights.loading,
+  hasErrors: state.flights.hasErrors
+});
+export default connect(mapStateToProps)(Flights);

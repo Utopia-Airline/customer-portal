@@ -6,6 +6,7 @@ import "../styles/components/ProfilePage.scss";
 import {getAuth} from "../store/auth/actions";
 import {Link} from 'react-router-dom';
 import LoadingSpinner from "../components/shared/LoadingSpinner";
+import ErrorToast from "../components/shared/ErrorToast";
 
 const ProfilePage = ({dispatch, loading, hasErrors, user, isLoggedIn}: UserProps) => {
   useEffect(() => {
@@ -16,7 +17,7 @@ const ProfilePage = ({dispatch, loading, hasErrors, user, isLoggedIn}: UserProps
   return (
     <div>
       {loading && <LoadingSpinner className="text-center m-5"/>}
-      {hasErrors && <div>Unable to display user profile</div>}
+      {hasErrors && <ErrorToast error={hasErrors} message='Something went wrong.'/>}
       {user &&
       <>
         <div className="user-profile">

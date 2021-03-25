@@ -3,12 +3,13 @@ import '../../styles/components/booking/bookingSidebar.scss';
 import Booking from "../../models/Booking";
 import {Badge, ListGroup} from "react-bootstrap";
 import LoadingSpinner from "../shared/LoadingSpinner";
+import ErrorToast from "../shared/ErrorToast";
 
 const BookingList = ({className, bookings, loading, hasErrors, loadBooking}: BookingProps) => {
   return (
     <div className={className}>
       {loading && <LoadingSpinner className="text-center"/>}
-      {!loading && hasErrors && <div>Unable to load bookings</div>}
+      {!loading && hasErrors && <ErrorToast error={hasErrors} message='Something went wrong.'/>}
       <ListGroup>
         {!loading && bookings && bookings.map((booking, i) => (
           <ListGroup.Item action onClick={() => loadBooking(booking.id)} key={i}>

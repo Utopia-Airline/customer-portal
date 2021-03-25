@@ -1,12 +1,13 @@
 import React from 'react';
 import Booking from "../../models/Booking";
 import LoadingSpinner from "../shared/LoadingSpinner";
+import ErrorToast from "../shared/ErrorToast";
 
 const BookingMain = ({className, booking, loading, hasErrors}: BookingProps) => {
     return (
       <div className={className}>
         {loading && <LoadingSpinner className="text-center m-5"/>}
-        {!loading && hasErrors && <div>Unable to load the booking</div>}
+        {!loading && hasErrors && <ErrorToast error={hasErrors} message='Something went wrong.'/>}
         {!loading && booking &&
         <div className='m-5'>
           <div>{booking.id}</div>

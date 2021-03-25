@@ -1,0 +1,16 @@
+.progress-bar {
+  background-color : #d9534f;
+}
+.progress{
+  background-color: #1a1a1a;
+  height: 3px;
+}
+.progress-bar.indeterminate {
+  position  : relative;
+  animation : progress-indeterminate 3s ease-in-out infinite;
+}
+
+@keyframes progress-indeterminate {
+  from { left : -35%; width : 35%; }
+  to { left : 100%; width : 35%;}
+}

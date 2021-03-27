@@ -8,7 +8,6 @@ import ErrorToast from "../shared/ErrorToast";
 const BookingList = ({className, bookings, loading, hasErrors, loadBooking}: BookingProps) => {
   return (
     <div className={className}>
-      {loading && <LoadingSpinner className="text-center"/>}
       {!loading && hasErrors && <ErrorToast error={hasErrors} message='Something went wrong.'/>}
       <ListGroup>
         {!loading && bookings && bookings.map((booking, i) => (

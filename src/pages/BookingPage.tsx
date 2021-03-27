@@ -7,6 +7,7 @@ import '../styles/components/booking/bookingPage.scss';
 import BookingMain from "../components/bookings/BookingMain";
 import BookingList from "../components/bookings/BookingList";
 import {clearBooking, getBookingById} from "../store/booking/actions";
+import LoadingSpinner from "../components/shared/LoadingSpinner";
 
 const BookingPage = (
   {dispatch, loading, hasErrors, bookings, userId, booking, bookingHasErrors, bookingLoading}:
@@ -22,17 +23,21 @@ const BookingPage = (
     console.log('load booking', id);
     dispatch(getBookingById(`${process.env["REACT_APP_BOOKING_URL"]}`, id));
     console.log(mainRef);
-    // @ts-ignore
-    mainRef.current.scrollIntoView();
+    mainRef.current.scrollIntoView({behavior:"smooth", block:"start"});
   }
 
   return (
     <div className='booking-page'>
-      <BookingList className='sidebar' loadBooking={(id) => loadBooking(id)}
-                   bookings={bookings} loading={loading} hasErrors={hasErrors}/>
-      <div className='main' ref={mainRef} >
-        <BookingMain className='main' booking={booking} hasErrors={bookingHasErrors} loading={bookingLoading}/>
-      </div>
+      {loading && <LoadingSpinner className="mt-5 mx-auto"/>}
+      {!loading &&
+      <>
+        <BookingList className='sidebar' loadBooking={(id) => loadBooking(id)}
+                     bookings={bookings} loading={loading} hasErrors={hasErrors}/>
+        <div className='main' ref={mainRef}>
+          <BookingMain className='main p-5' booking={booking} hasErrors={bookingHasErrors} loading={bookingLoading}/>
+        </div>
+      </>
+      }
     </div>
   );
 }

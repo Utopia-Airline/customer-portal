@@ -28,12 +28,12 @@ const App = ({getSession, isLoggedIn, loading}) => {
           <Route path="/myaccount/update" component={UpdatePage}/>
           {!loading &&
           <Route path="/bookings">
-            {isLoggedIn ? <BookingPage/> : <Redirect to='/login'/>}
+            {isLoggedIn ? <BookingPage/> : <Redirect push to='/login'/>}
           </Route>
           }
           {!loading &&
           <Route path="/myaccount">
-            {isLoggedIn ? <ProfilePage/> : <Redirect to='/login'/>}
+            {isLoggedIn ? <ProfilePage/> : <Redirect push to='/login'/>}
           </Route>
           }
           <Route path="/login">

@@ -9,7 +9,6 @@ import LinearProgress from "../components/shared/LinearProgress";
 
 const Header = ({dispatch, isLoggedIn, user, hasErrors, loading}: UserProps) => {
   const history = useHistory();
-
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark" sticky='top'>

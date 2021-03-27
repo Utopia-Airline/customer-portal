@@ -27,8 +27,8 @@ const LoginForm = ({dispatch, loading, hasErrors, isLoggedIn}) => {
       <Button variant="primary" type="button"
               onClick={() => {
                 dispatch(login(process.env["REACT_APP_SESSION_URL"], {username, password})).then(res => {
-                  if (res)
-                    history.push('/myaccount');
+                  if (res) // history.push('/myaccount');
+                    history.goBack();
                   else
                     console.log('isLoggedIn', isLoggedIn, res);
                 })

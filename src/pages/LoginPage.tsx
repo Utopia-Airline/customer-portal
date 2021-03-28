@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import LoginForm from "../components/LoginForm";
+import LoginForm from "../components/auth/LoginForm";
 import '../styles/components/LoginPage.scss';
 import ErrorToast from "../components/shared/ErrorToast";
 

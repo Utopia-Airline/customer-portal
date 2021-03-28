@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="bg-primary text-lg-start">
       <div style={{backgroundColor: "rgba(0, 0, 0, 0.2)"}}>
-        <Row className="text-light p-5 m-2">
+        <Row className="text-light p-5">
           <Col className='my-1 mx-5'>
             <h5 className='text-secondary '>About Utopia</h5>
             <a className="white-link">About Us</a>

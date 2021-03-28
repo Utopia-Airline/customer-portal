@@ -5,18 +5,19 @@
 }
 
 .sidebar {
-  background-color : #1a1a1a;
-  position         : static;
-  left             : 0;
-  top              : 0;
-  bottom           : 0;
+  background-color : #FFFFFF;
+  position       : static;
+  left           : 0;
+  top            : 0;
+  bottom         : 0;
+  //border-top       : 1px solid rgba(255, 255, 255, 0.5);
   //padding          : 20px 10px 10px;
-  box-shadow       : inset -1px 0 0 rgba(0, 0, 0, .1);
-  min-height       : 100vh;
+  box-shadow     : inset -1px 0 0 rgba(0, 0, 0, .1);
+  min-height     : 100vh;
   //z-index          : -1;
-  width            : 25%;
-  display          : flex;
-  flex-direction   : column;
+  width          : 25%;
+  display        : flex;
+  flex-direction : column;
 }
 
 .main {
@@ -25,9 +26,17 @@
 }
 
 .booking-item {
-  display : flex;
-  color   : #212529;
-  padding : 0;
+  border-right: 0;
+  border-left: 0;
+  border-top-color    : #6c6c6c;
+  border-bottom-color : #6c6c6c;
+  background-color    : #1a1a1a;
+  color               : #E5E5E5;
+
+  &:hover, &:focus, &:active {
+    //background-color : #E5E5E5 !important;
+    background-color : #FFFFFF !important;
+  }
 
   .main {
     flex    : 1;

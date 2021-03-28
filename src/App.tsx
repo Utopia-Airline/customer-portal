@@ -1,9 +1,7 @@
 import "./styles/App.scss";
 import Header from './layout/Header';
-import Footer from './layout/Footer';
 import {BrowserRouter as Router, Redirect, Switch, Route} from 'react-router-dom';
 import Flights from './components/flights/Flights';
-import Home from './components/home/Home';
 import {connect} from "react-redux";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -12,6 +10,8 @@ import UpdatePage from "./pages/UpdatePage";
 import {useEffect} from "react";
 import {getAuth} from "./store/auth/actions";
 import BookingPage from "./pages/BookingPage";
+import HomePage from "./pages/HomePage";
+import Footer from "./layout/Footer";
 
 
 const App = ({getSession, isLoggedIn, loading}) => {
@@ -24,16 +24,16 @@ const App = ({getSession, isLoggedIn, loading}) => {
       <Header/>
       <div className='full-page'>
         <Switch>
-          <Route exact={true} path="/home" component={Home}/>
+          <Route exact={true} path="/home" component={HomePage}/>
           <Route path="/myaccount/update" component={UpdatePage}/>
           {!loading &&
           <Route path="/bookings">
-            {isLoggedIn ? <BookingPage/> : <Redirect to='/login'/>}
+            {isLoggedIn ? <BookingPage/> : <Redirect push to='/login'/>}
           </Route>
           }
           {!loading &&
           <Route path="/myaccount">
-            {isLoggedIn ? <ProfilePage/> : <Redirect to='/login'/>}
+            {isLoggedIn ? <ProfilePage/> : <Redirect push to='/login'/>}
           </Route>
           }
           <Route path="/login">

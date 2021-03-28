@@ -5,6 +5,7 @@ import {Badge, ListGroup} from "react-bootstrap";
 import LoadingSpinner from "../shared/LoadingSpinner";
 import ErrorToast from "../shared/ErrorToast";
 import BookingTabPanel from "./BookingTabPanel";
+import {format} from "date-fns";
 
 const BookingList = ({
                        className, bookings, loadBookings,
@@ -25,7 +26,9 @@ const BookingList = ({
               <div><Badge>{booking.id}</Badge></div>
               <span className="mt-sm-1">{booking?.flights[0]?.route?.origin?.city} to </span>
               <span className="mt-sm-1">{booking?.flights[0]?.route?.destination?.city}</span>
-              <div className="text-secondary mt-sm-1"> at {booking?.flights[0]?.departureTime}</div>
+              <div className="text-secondary mt-sm-1">
+                at {format(new Date(booking?.flights[0]?.departureTime), 'EEEE, dd MMMM yyyy')}
+              </div>
             </ListGroup.Item>
           ))}
         </>

@@ -39,7 +39,7 @@ const Header = ({dispatch, isLoggedIn, user, hasErrors, loading}: UserProps) => 
           </Nav>}
           {!user &&
           <Button variant="secondary" size='sm' type="button">
-            <Link className="nav-link" to='/login'>Login</Link>
+            <Link className="nav-link" to='/login'>Sign In</Link>
           </Button>}
         </Navbar.Collapse>
       </Navbar>

@@ -11,7 +11,7 @@ const IconButton = ({className, onClick, size, secondary}: IconProps) => {
       fontSize = '3.25rem';
   }
   return (
-    <button className={`icon-btn${secondary ? '-secondary' : ''}`} onClick={onClick}>
+    <button className={`icon-btn${secondary ? '-secondary' : ''}`} type="button" onClick={onClick}>
       <i className={`${className}`} style={{fontSize: fontSize}}/>
     </button>
   );

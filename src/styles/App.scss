@@ -105,6 +105,11 @@ code {
   background-color      : rgba(0, 0, 0, 0.5);
 }
 
+.mask-light {
+  @extend .mask;
+  background-color : rgba(0, 0, 0, 0.275);
+}
+
 .white-link {
   display : block;
   color   : white;
@@ -174,10 +179,35 @@ fieldset {
 .MuiButton-root {
   border-radius : 0 !important;
 }
+.MuiButton-rounded {
+  border-radius : 50% !important;
+}
 
 .col {
   padding : 0;
+  margin  : 0;
 }
-.row{
-  margin: 0;
+
+.row {
+  margin  : 0;
+  padding : 0;
+}
+
+.picture-hero {
+  position            : relative;
+  background-image    : url("https://content.delta.com/content/www/us/en/plan-your-next-trip/where-we-fly.damAssetRender.20200702T1205197940400.html/content/dam/delta-com/coronavirus/dock-destinations-desktop.png");
+  background-size     : cover;
+  background-repeat   : no-repeat;
+  background-position : 50% 50%;
+  min-height          : 15rem;
+  width               : 100%;
+  margin-bottom       : 0 !important;
+  border-radius       : 0;
+}
+
+.btn-link {
+  //background-color: orange !important;
+  &:hover, &:active, &:focus {
+    color : $white;
+  }
 }

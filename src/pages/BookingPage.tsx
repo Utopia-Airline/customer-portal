@@ -6,7 +6,7 @@ import Booking from "../models/Booking";
 import '../styles/components/booking/bookingPage.scss';
 import BookingMain from "../components/bookings/BookingMain";
 import BookingList from "../components/bookings/BookingList";
-import {deleteBooking, getBookingById} from "../store/booking/actions";
+import {clearBooking, getBookingById} from "../store/booking/actions";
 import LoadingSpinner from "../components/shared/LoadingSpinner";
 
 
@@ -19,7 +19,7 @@ const BookingPage = ({
   const url = `${process.env["REACT_APP_BOOKING_URL"]}`;
   useEffect(() => {
     console.log('get all bookings', userId);
-    // dispatch(deleteBooking())
+    dispatch(clearBooking())
     dispatch(getAllBookings(url.concat("/users?userId="+userId+"&isActive=true")));
   }, [])
 

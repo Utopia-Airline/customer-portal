@@ -5,7 +5,8 @@ import {
   DELETE_BOOKING_FAILURE, 
   GET_BOOKING, 
   GET_BOOKING_FAILURE, 
-  GET_BOOKING_SUCCESS, 
+  GET_BOOKING_SUCCESS,
+  CLEAR_BOOKING, 
   POST_BOOKING, 
   POST_BOOKING_SUCCESS, 
   POST_BOOKING_FAILURE
@@ -27,6 +28,11 @@ export const getBookingFailure = () => ({
 export const postBooking = () => ({
   type: POST_BOOKING
 });
+
+export const clearBooking = () => ({
+  type: CLEAR_BOOKING
+});
+
 
 export const postBookingSuccess = () => ({
   type: POST_BOOKING_SUCCESS

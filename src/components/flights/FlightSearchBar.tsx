@@ -1,14 +1,15 @@
-import React, {useState} from 'react';
-import DateFnsUtils from "@date-io/date-fns";
+import React, {useEffect, useState} from 'react';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import {
   Box, Button, FormControl, FormHelperText, Grid,
   Input, InputLabel, MenuItem, Paper, Select, TextField,
 } from "@material-ui/core";
-import {Autocomplete,} from "@material-ui/core";
 import FlightDatePicker from "../shared/FlightDatePicker";
 import {makeStyles} from "@material-ui/core/styles";
-import AutocompleteBar from "../shared/AutocompleteBar";
+import FlightAirportBar from "./FlightAirportBar";
+import {Link} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {setQueriesSuccess} from "../../store/flights/action";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -21,13 +22,25 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const FlightSearchBar = () => {
-  const top100Films = [{title: 'The Lord of the Rings'}, {title: 'Pulp Fiction'}];
   const classes = useStyles();
-  const [passenger, setPassenger] = React.useState(null);
-
+  const [passengers, setPassengers] = useState('');
+  const [origin, setOrigin] = useState('');
+  const [destination, setDestination] = useState('');
+  const [departing, setDeparting] = useState('');
+  const [returning, setReturning] = useState('');
+  const queries = new Map<string, string>();
   const handleChangePassenger = (event) => {
-    setPassenger(event.target.value);
+    setPassengers(event.target.value);
   };
+  const dispatch = useDispatch();
+  useEffect(() => {
+    origin ? queries.set('origin', origin) : queries.delete('origin');
+    destination ? queries.set('destination', destination) : queries.delete('destination');
+    passengers ? queries.set('passengers', passengers) : queries.delete('passengers');
+    departing ? queries.set('departing', departing) : queries.delete('departing');
+    returning ? queries.set('returning', returning) : queries.delete('returning');
+    dispatch(setQueriesSuccess(queries));
+  }, [origin, destination, departing, returning, passengers])
   return (
     <Box marginX={7} style={{marginTop: '-25px', zIndex: 10, position: 'relative'}}>
       <Paper elevation={2}>
@@ -45,24 +58,20 @@ const FlightSearchBar = () => {
               >
                 <Grid item xs={12} sm={12} md={6} lg={6}>
                   <Box m={1}>
-                    <Autocomplete
-                      id="combo-box-demo"
-                      options={top100Films}
-                      getOptionLabel={(option) => option.title}
-                      renderInput={(params) =>
-                        <TextField {...params} label="Origin" variant="outlined" color='secondary'/>}
-                    />
+                    <FlightAirportBar label='Origin' handleChange={(value) => setOrigin(value)}/>
                   </Box>
                 </Grid>
                 <Grid item xs={12} sm={12} md={6} lg={6}>
                   <Box m={1}>
-
-                    <AutocompleteBar/>
+                    <FlightAirportBar label='Destination' handleChange={(value) => setDestination(value)}/>
                   </Box>
                 </Grid>
                 <Grid item xs={12} sm={12} md={6} lg={6}>
                   <Box m={1}>
-                    <FlightDatePicker/>
+                    <FlightDatePicker handleChange={(dates => {
+                      setDeparting(dates[0]);
+                      setReturning(dates[1]);
+                    })}/>
                   </Box>
                 </Grid>
                 <Grid item xs={12} sm={12} md={6} lg={6}>
@@ -72,19 +81,19 @@ const FlightSearchBar = () => {
                       <Select
                         labelId="passenger-label"
                         id="demo-simple-select-outlined"
-                        value={passenger}
+                        value={passengers}
                         onChange={handleChangePassenger}
                         label="Passenger"
                       >
                         <MenuItem value={1}>1</MenuItem>
                         <MenuItem value={2}>2</MenuItem>
                         <MenuItem value={3}>3</MenuItem>
-                        <MenuItem value={3}>4</MenuItem>
-                        <MenuItem value={3}>5</MenuItem>
-                        <MenuItem value={3}>6</MenuItem>
-                        <MenuItem value={3}>7</MenuItem>
-                        <MenuItem value={3}>8</MenuItem>
-                        <MenuItem value={3}>9</MenuItem>
+                        <MenuItem value={4}>4</MenuItem>
+                        <MenuItem value={5}>5</MenuItem>
+                        <MenuItem value={6}>6</MenuItem>
+                        <MenuItem value={7}>7</MenuItem>
+                        <MenuItem value={8}>8</MenuItem>
+                        <MenuItem value={9}>9</MenuItem>
                       </Select>
                     </FormControl>
                   </Box>
@@ -93,8 +102,11 @@ const FlightSearchBar = () => {
             </Box>
           </FormControl>
           <Box m={1} alignSelf='center'>
-            <Button color='secondary' style={{borderRadius: '25rem'}}>
-              <ArrowForwardIcon fontSize='large'/>
+            <Button color='secondary' className='MuiButton-rounded'
+                    style={{padding: 0, minWidth: 0}}>
+              <Link to='/flights/search' className='p-3'>
+                <ArrowForwardIcon style={{fontSize: '2.85rem'}}/>
+              </Link>
             </Button>
           </Box>
         </Box>

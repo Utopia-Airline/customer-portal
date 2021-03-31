@@ -1,13 +1,38 @@
 import React from 'react';
-import {Button} from "react-bootstrap";
 import {useHistory, Link} from 'react-router-dom'
 import {connect} from "react-redux";
 import {Navbar, Nav, NavDropdown} from 'react-bootstrap';
 import {logout} from "../store/auth/actions";
 import User from "../models/User";
 import LinearProgress from "../components/shared/LinearProgress";
+import {Button} from '@material-ui/core';
+import {makeStyles, Theme, withStyles} from "@material-ui/core/styles";
+import {grey} from "@material-ui/core/colors";
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    padding: 0,
+    color: theme.palette.getContrastText(grey[500]),
+    backgroundColor: grey[200],
+    '&:hover': {
+      backgroundColor: grey[300],
+    }
+  },
+}));
+
+const NavButton = withStyles((theme: Theme) => ({
+  root: {
+    padding: "0 !important",
+    color: `${theme.palette.getContrastText(grey[500])} !important`,
+    backgroundColor: `${grey[200]} !important`,
+    '&:hover': {
+      backgroundColor: `${grey[300]} !important`,
+    },
+  },
+}))(Button);
 
 const Header = ({dispatch, isLoggedIn, user, hasErrors, loading}: UserProps) => {
+  const classes = useStyles();
   const history = useHistory();
   return (
     <>
@@ -21,7 +46,7 @@ const Header = ({dispatch, isLoggedIn, user, hasErrors, loading}: UserProps) => 
             <Link className="nav-link" to='/flights'>My trips</Link>
             <Link className="nav-link" to='/flights'>Flight status</Link>
           </Nav>
-          {user && <Nav >
+          {user && <Nav>
             <NavDropdown title={user.username} alignRight id="collapsible-nav-dropdown">
               <NavDropdown.Item as={Link} to='/myAccount'>My Account</NavDropdown.Item>
               <NavDropdown.Item as={Link} to='/bookings'>My Bookings</NavDropdown.Item>
@@ -38,9 +63,11 @@ const Header = ({dispatch, isLoggedIn, user, hasErrors, loading}: UserProps) => 
             </NavDropdown>
           </Nav>}
           {!user &&
-          <Button variant="secondary" size='sm' type="button">
-            <Link className="nav-link" to='/login'>Sign In</Link>
-          </Button>}
+          <NavButton variant="contained"
+                     type='button' disableElevation>
+            <Link className='nav-link' to='/login'
+                  style={{padding: "9px 17px"}}>Sign In</Link>
+          </NavButton>}
         </Navbar.Collapse>
       </Navbar>
       {loading && <LinearProgress/>}

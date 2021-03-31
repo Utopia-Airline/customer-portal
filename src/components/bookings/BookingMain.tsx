@@ -2,8 +2,12 @@ import React from 'react';
 import Booking from "../../models/Booking";
 import LoadingSpinner from "../shared/LoadingSpinner";
 import ErrorToast from "../shared/ErrorToast";
+import { Button } from 'react-bootstrap';
+import {connect} from "react-redux";
+import { cancelBooking } from '../../store/booking/actions';
 
-const BookingMain = ({className, booking, loading, hasErrors}: BookingProps) => {
+const BookingMain = ({className, booking, loading, hasErrors, userId, dispatch}: BookingProps) => {
+    const url = process.env["REACT_APP_BOOKING_URL"];
     return (
       <div className={className}>
         {loading && <LoadingSpinner className="text-center m-5"/>}
@@ -37,17 +41,28 @@ const BookingMain = ({className, booking, loading, hasErrors}: BookingProps) => 
               <div>{passenger.address}</div>
             </div>
           ))}
+          {userId && <Button onClick={e => {
+            dispatch(cancelBooking(url, booking.id));
+          }}>Cancel Booking</Button>}
+          {!userId && <Button onClick={e => {
+            dispatch(cancelBooking(url, booking.id));
+            }}>Cancel Booking</Button>}
         </div>}
       </div>
     );
   }
 ;
 
+
+
 interface BookingProps {
   className?: any;
   loading?: boolean;
   booking?: Booking;
   hasErrors?: boolean;
+  userId?: number;
+  dispatch?: any;
 }
+
 
 export default BookingMain;

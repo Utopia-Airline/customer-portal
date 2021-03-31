@@ -6,17 +6,18 @@ import Booking from "../models/Booking";
 import '../styles/components/booking/bookingPage.scss';
 import BookingMain from "../components/bookings/BookingMain";
 import BookingList from "../components/bookings/BookingList";
-import {clearBooking, getBookingById} from "../store/booking/actions";
+import {deleteBooking, getBookingById} from "../store/booking/actions";
 import LoadingSpinner from "../components/shared/LoadingSpinner";
 
 const BookingPage = (
   {dispatch, loading, hasErrors, bookings, userId, booking, bookingHasErrors, bookingLoading}:
     BookingProps) => {
   const mainRef = useRef<HTMLDivElement>();
+  const url = `${process.env["REACT_APP_BOOKING_URL"]}`;
   useEffect(() => {
     console.log('get all bookings', userId);
-    dispatch(clearBooking())
-    dispatch(getAllBookings(`${process.env["REACT_APP_BOOKING_URL"]}`));
+    // dispatch(deleteBooking())
+    dispatch(getAllBookings(url.concat("/users?userId="+userId+"&isActive=true")));
   }, [])
 
   function loadBooking(id) {
@@ -34,7 +35,7 @@ const BookingPage = (
         <BookingList className='sidebar' loadBooking={(id) => loadBooking(id)}
                      bookings={bookings} loading={loading} hasErrors={hasErrors}/>
         <div className='main' ref={mainRef}>
-          <BookingMain className='main p-5' booking={booking} hasErrors={bookingHasErrors} loading={bookingLoading}/>
+          <BookingMain className='main p-5' booking={booking} hasErrors={bookingHasErrors} loading={bookingLoading} userId={userId} dispatch={dispatch}/>
         </div>
       </>
       }

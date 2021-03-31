@@ -13,6 +13,7 @@ import HomePage from "./pages/HomePage";
 import Footer from "./layout/Footer";
 import FlightSearchPage from "./pages/FlightSearchPage";
 import FlightsListPage from "./pages/FlightsListPage";
+// import BookingCreationPage from "./pages/BookingCreationPage";
 
 
 const App = ({getSession, isLoggedIn, loading}) => {
@@ -25,6 +26,7 @@ const App = ({getSession, isLoggedIn, loading}) => {
       <Header/>
       <div className='full-page'>
         <Switch>
+          {/* <Route exact={true} path="/book" component={BookingCreationPage}></Route> */}
           <Route exact={true} path="/home" component={HomePage}/>
           <Route path="/myaccount/update" component={UpdatePage}/>
           {!loading &&

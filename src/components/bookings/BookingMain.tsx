@@ -103,10 +103,10 @@ const BookingMain = ({className, booking, loading, hasErrors, userId, dispatch}:
               </AccordionDetails>
             </Accordion>
           ))}
-          {userId && <Button onClick={e => {
+          {userId && <Button className='mt-4' onClick={e => {
             dispatch(cancelBooking(url, booking.id));
           }}>Cancel Booking</Button>}
-          {!userId && <Button onClick={e => {
+          {!userId && <Button className='mt-4' onClick={e => {
             dispatch(cancelBooking(url, booking.id));
             }}>Cancel Booking</Button>}
 

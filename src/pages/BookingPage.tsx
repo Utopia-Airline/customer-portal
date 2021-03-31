@@ -18,9 +18,9 @@ const BookingPage = ({
   const mainRef = useRef<HTMLDivElement>();
   const url = `${process.env["REACT_APP_BOOKING_URL"]}`;
   useEffect(() => {
-    console.log('get all bookings', userId);
+    console.log('get all bookings', userId, userRole);
     dispatch(clearBooking())
-    dispatch(getAllBookings(url.concat("/users?userId="+userId+"&isActive=true")));
+    loadBookings(true);
   }, [])
 
   function loadBooking(id) {

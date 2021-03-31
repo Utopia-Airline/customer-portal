@@ -1,6 +1,6 @@
 export default class Flight {
   id: number;
-  route: {
+  route?: {
     id: number;
     origin: {
       iataId: string;
@@ -15,7 +15,7 @@ export default class Flight {
       country: string;
     };
   };
-  departureTime: Date;
+  departureTime?: Date;
   arrivalTime?: Date;
   totalSeats?: number;
   reservedSeats?: number;

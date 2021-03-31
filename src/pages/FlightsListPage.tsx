@@ -34,7 +34,8 @@ interface FlightProps {
 const mapStateToProps = (state: RootState) => ({
   flights: state.flights.departureFlights.flights,
   loading: state.flights.loading,
-  hasErrors: state.flights.hasErrors
+  hasErrors: state.flights.hasErrors,
+  chosenFlight: state.flight
 });
 
 export default connect(mapStateToProps)(FlightsListPage);

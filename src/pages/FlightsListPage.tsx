@@ -5,6 +5,7 @@ import {fetchFeaturedFlights} from "../store/flights/action";
 import FlightList from "../components/flights/FlightList";
 import {RootState} from "../store";
 
+
 const FlightsListPage = ({dispatch, loading, hasErrors, flights}: FlightProps) => {
   useEffect(() => {
     const queries = new Map<string, string>();

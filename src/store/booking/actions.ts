@@ -33,3 +33,21 @@ export function getBookingById(url: string, id: number) {
     }
   }
 }
+
+export function getBookingForGuest(url: string, confirmationCode: string) {
+  return async (dispatch) => {
+    dispatch(getBooking())
+    try {
+      const res = await fetch(`${url}/guest?confirmationCode=${confirmationCode}`);
+      if (res.ok) {
+        let data = await res.json();
+        console.log('data', data);
+        dispatch(getBookingSuccess(data));
+      } else
+        dispatch(getBookingFailure());
+
+    } catch (err) {
+      dispatch(getBookingFailure());
+    }
+  }
+}

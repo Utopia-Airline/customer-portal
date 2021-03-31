@@ -9,12 +9,11 @@ import UpdatePage from "./pages/UpdatePage";
 import {useEffect} from "react";
 import {getAuth} from "./store/auth/actions";
 import BookingPage from "./pages/BookingPage";
+import BookingGuestPage from "./pages/BookingGuestPage";
 import HomePage from "./pages/HomePage";
 import Footer from "./layout/Footer";
 import FlightSearchPage from "./pages/FlightSearchPage";
 import FlightsListPage from "./pages/FlightsListPage";
-// import BookingCreationPage from "./pages/BookingCreationPage";
-
 
 const App = ({getSession, isLoggedIn, loading}) => {
   useEffect(() => {
@@ -26,7 +25,8 @@ const App = ({getSession, isLoggedIn, loading}) => {
       <Header/>
       <div className='full-page'>
         <Switch>
-          {/* <Route exact={true} path="/book" component={BookingCreationPage}></Route> */}
+          <Route exact={true} path="/bookings/guest" component={BookingGuestPage}/>
+          <Route exact={true} path="/home" component={Home}/>
           <Route exact={true} path="/home" component={HomePage}/>
           <Route path="/myaccount/update" component={UpdatePage}/>
           {!loading &&

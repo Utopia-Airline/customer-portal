@@ -1,13 +1,15 @@
 import {GET_BOOKINGS, GET_BOOKINGS_FAILURE, GET_BOOKINGS_SUCCESS} from "./types";
 import Booking from "../../models/Booking";
+import Pageable from "../../models/Pageable";
 
 export const getBookings = () => ({
   type: GET_BOOKINGS
 });
 
-export const getBookingsSuccess = (bookings: Booking[]) => ({
+export const getBookingsSuccess = (bookings: Booking[], total: number) => ({
   type: GET_BOOKINGS_SUCCESS,
-  payload: bookings
+  payload: bookings,
+  total
 });
 
 export const getBookingsFailure = () => ({
@@ -21,9 +23,10 @@ export function getAllBookings(url: string) {
     try {
       const res = await fetch(url);
       if (res.ok) {
-        let data = await res.json();
-        data = data.content;
-        dispatch(getBookingsSuccess(data));
+        const data = await res.json() as Pageable<Booking>;
+        const bookings = data.content;
+        console.log('data total', data.totalElements)
+        dispatch(getBookingsSuccess(bookings, data.totalElements));
       } else
         dispatch(getBookingsFailure());
 

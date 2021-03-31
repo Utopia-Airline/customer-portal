@@ -2,7 +2,9 @@
 @import "lux";
 
 $danger : #f44336;
-
+$dark   : #1a1a1a;
+$gray   : #6c6c6c;
+$white  : #E5E5E5;
 body {
   margin                  : 0;
   //font-family             : -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -27,7 +29,7 @@ code {
   //transition: 4.32s opacity ease-in-out;
   opacity          : 1;
   transform        : none;
-  transition       : opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition       : all 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 
   .toast-header {
     color            : #FFFFFF;
@@ -74,12 +76,108 @@ code {
   outline         : none;
   box-shadow      : none;
   color           : #FFFFFF;
-  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  border-radius: 50%;
+  transition      : background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius   : 50%;
 
-  &:hover, &:active, &:focus {
+  &:hover {
     background-color : rgba(0, 0, 0, 0.04);
   }
 }
 
+.icon-btn-secondary {
+  @extend .icon-btn;
 
+  &:hover {
+    opacity : 0.5;
+  }
+}
+
+.mask {
+  position              : absolute;
+  top                   : 0;
+  right                 : 0;
+  bottom                : 0;
+  left                  : 0;
+  width                 : 100%;
+  height                : 100%;
+  overflow              : hidden;
+  background-attachment : fixed;
+  background-color      : rgba(0, 0, 0, 0.5);
+}
+
+.white-link {
+  display : block;
+  color   : white;
+  cursor  : pointer;
+  outline : none;
+  margin  : 5px;
+
+  &:hover {
+    color           : white;
+    text-decoration : none;
+  }
+}
+
+fieldset {
+  border-radius : 0 !important;
+}
+
+.flight-date {
+
+  fieldset {
+    border-radius : 0;
+  }
+
+  &:nth-of-type(1) {
+    fieldset {
+      border-right : 0;
+    }
+  }
+
+  &:nth-of-type(2) {
+    fieldset {
+      border-left : 0;
+    }
+  }
+}
+
+.utopia-carousel {
+  @media screen and(max-width : 600px) {
+    img {
+      height : 200px !important;
+    }
+  }
+}
+
+
+.dropdown-menu {
+  background-color : $dark;
+
+  * {
+    color : white !important;
+
+    &:hover, &:active, &:focus {
+      background-color : $gray;
+    }
+  }
+
+  //top              : 65px;
+  width            : 400px;
+  //z-index          : -1;
+  border-radius    : 0;
+  border           : 0;
+  @media screen and(max-width : 400px) {
+    width : auto;
+  }
+}
+
+.MuiButton-root {
+  border-radius : 0 !important;
+}
+
+.col {
+  padding : 0;
+}
+.row{
+  margin: 0;
+}

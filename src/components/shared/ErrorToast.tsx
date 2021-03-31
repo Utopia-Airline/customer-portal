@@ -18,7 +18,7 @@ const ErrorToast = ({error, message, status}: ErrorProps) => {
         <Toast.Body className='d-flex'>
           <i className="fas fa-exclamation-circle align-self-center mr-2" style={{fontSize:"1.35rem"}}/>
           <div className='align-self-center'>{message}</div>
-          <IconButton className='fas fa-times align-self-center' onClick={() => setShow(false)}/>
+          <IconButton className='fas fa-times align-self-center'  onClick={() => setShow(false)}/>
         </Toast.Body>
       </Toast>
     </div>

@@ -9,22 +9,23 @@ import LinearProgress from "../components/shared/LinearProgress";
 
 const Header = ({dispatch, isLoggedIn, user, hasErrors, loading}: UserProps) => {
   const history = useHistory();
-
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
+      <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark" sticky='top'>
         <Link className='navbar-brand' to="/home">Utopia</Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
             <Link className="nav-link" to='/home'>Home</Link>
-            <Link className="nav-link" to='/flights'>Flights</Link>
-
+            <Link className="nav-link" to='/flights'>Top flights</Link>
+            <Link className="nav-link" to='/flights'>My trips</Link>
+            <Link className="nav-link" to='/flights'>Flight status</Link>
           </Nav>
-          {user && <Nav>
+          {user && <Nav >
             <NavDropdown title={user.username} alignRight id="collapsible-nav-dropdown">
               <NavDropdown.Item as={Link} to='/myAccount'>My Account</NavDropdown.Item>
               <NavDropdown.Item as={Link} to='/bookings'>My Bookings</NavDropdown.Item>
+              <NavDropdown.Divider/>
               <NavDropdown.Item
                 onClick={() => {
                   dispatch(logout(process.env["REACT_APP_SESSION_URL"])).then(res => {
@@ -34,13 +35,11 @@ const Header = ({dispatch, isLoggedIn, user, hasErrors, loading}: UserProps) => 
                       history.push('/home');
                   })
                 }}>Logout</NavDropdown.Item>
-              <NavDropdown.Divider/>
-              {/*<NavDropdown.Item onClick>logout</NavDropdown.Item>*/}
             </NavDropdown>
           </Nav>}
           {!user &&
           <Button variant="secondary" size='sm' type="button">
-            <Link className="nav-link" to='/login'>Login</Link>
+            <Link className="nav-link" to='/login'>Sign In</Link>
           </Button>}
         </Navbar.Collapse>
       </Navbar>

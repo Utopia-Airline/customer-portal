@@ -1,7 +1,6 @@
 import "./styles/App.scss";
 import Header from './layout/Header';
 import {BrowserRouter as Router, Redirect, Switch, Route} from 'react-router-dom';
-import Flights from './components/flights/Flights';
 import {connect} from "react-redux";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -12,6 +11,8 @@ import {getAuth} from "./store/auth/actions";
 import BookingPage from "./pages/BookingPage";
 import HomePage from "./pages/HomePage";
 import Footer from "./layout/Footer";
+import FlightSearchPage from "./pages/FlightSearchPage";
+import FlightsListPage from "./pages/FlightsListPage";
 
 
 const App = ({getSession, isLoggedIn, loading}) => {
@@ -41,7 +42,8 @@ const App = ({getSession, isLoggedIn, loading}) => {
           </Route>
           <Route path="/signup" component={SignupPage}/>
           <Route exact={true} path="/"> <Redirect to="/home"/> </Route>
-          <Route exact={true} path="/flights" component={Flights}/>
+          <Route exact={true} path="/flights/search" component={FlightSearchPage}/>
+          <Route exact={true} path="/flights" component={FlightsListPage}/>
           {/*
               <Route path="/signup" component={Signup} />
               <Route exact={true} path="/bookings" component={Bookings} />

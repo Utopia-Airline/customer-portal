@@ -9,38 +9,38 @@ const Footer = () => {
         <Row className="text-light p-5">
           <Col className='my-1 mx-5'>
             <h5 className='text-secondary '>About Utopia</h5>
-            <a className="white-link">About Us</a>
-            <a className="white-link">Careers</a>
-            <a className="white-link">News Hub</a>
-            <a className="white-link">Investor Relations</a>
-            <a className="white-link">Investor Relations</a>
-            <a className="white-link">Investor Relations</a>
-            <a className="white-link">Travel Agents</a>
-            <a className="white-link">Mobile App</a>
+            <a className="white-link" href="/#">About Us</a>
+            <a className="white-link" href="/#">Careers</a>
+            <a className="white-link" href="/#">News Hub</a>
+            <a className="white-link" href="/#">Investor Relations</a>
+            <a className="white-link" href="/#">Investor Relations</a>
+            <a className="white-link" href="/#">Investor Relations</a>
+            <a className="white-link" href="/#">Travel Agents</a>
+            <a className="white-link" href="/#">Mobile App</a>
           </Col>
           <Col className='my-1 mx-5'>
             <h5 className='text-secondary '>CUSTOMER SERVICE</h5>
-            <a className="white-link">Need Help?</a>
-            <a className="white-link">Careers</a>
-            <a className="white-link">Message Us</a>
+            <a className="white-link" href="/#">Need Help?</a>
+            <a className="white-link" href="/#">Careers</a>
+            <a className="white-link" href="/#">Message Us</a>
           </Col>
           <Col className='my-1 mx-5'>
-            <h5 className='text-secondary '>SITE SUPPORT</h5>
-            <a className="white-link">Login Help</a>
-            <a className="white-link">Site Map</a>
-            <a className="white-link">Browser Compatibility</a>
-            <a className="white-link">Accessibility</a>
-            <a className="white-link">Booking Information</a>
+            <h5 className='text-secondary'>SITE SUPPORT</h5>
+            <a className="white-link" href="/#">Login Help</a>
+            <a className="white-link" href="/#">Site Map</a>
+            <a className="white-link" href="/#">Browser Compatibility</a>
+            <a className="white-link" href="/#">Accessibility</a>
+            <a className="white-link" href="/#">Booking Information</a>
           </Col>
           <Col className='my-1 mx-5'>
             <h5 className='text-secondary'>POLICIES</h5>
-            <a className="white-link">Customer Commitment</a>
-            <a className="white-link">Tarmac Delay Plan</a>
-            <a className="white-link">Legal</a>
-            <a className="white-link">Sustainability</a>
-            <a className="white-link">Contract of Carriage</a>
-            <a className="white-link">Cookies, Privacy & Security</a>
-            <a className="white-link">Human Trafficking Statement</a>
+            <a className="white-link" href="/#">Customer Commitment</a>
+            <a className="white-link" href="/#">Tarmac Delay Plan</a>
+            <a className="white-link" href="/#">Legal</a>
+            <a className="white-link" href="/#">Sustainability</a>
+            <a className="white-link" href="/#">Contract of Carriage</a>
+            <a className="white-link" href="/#">Cookies, Privacy & Security</a>
+            <a className="white-link" href="/#">Human Trafficking Statement</a>
           </Col>
         </Row>
         <div className="text-light text-center p-3">

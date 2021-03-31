@@ -25,11 +25,9 @@ export function getAllBookings(url: string) {
       if (res.ok) {
         const data = await res.json() as Pageable<Booking>;
         const bookings = data.content;
-        console.log('data total', data.totalElements)
         dispatch(getBookingsSuccess(bookings, data.totalElements));
       } else
         dispatch(getBookingsFailure());
-
     } catch (err) {
       dispatch(getBookingsFailure());
     }

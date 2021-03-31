@@ -5,13 +5,17 @@ import bookingReducer from "./booking/reducers";
 import flightsReducer from "./flights/reducers";
 import flightReducer from "./flight/reducers";
 import authReducer from "./auth/reducers";
+import originAirportsReducer from "./airport/origin/reducers";
+import destinationAirportsReducer from "./airport/destination/reducers";
 
 const rootReducer = combineReducers({
   auth: authReducer,
   bookings: bookingsReducer,
   booking: bookingReducer,
   flights: flightsReducer,
-  flight: flightReducer
+  flight: flightReducer,
+  originAirports: originAirportsReducer,
+  destinationAirports: destinationAirportsReducer
 })
 
 export type RootState = ReturnType<typeof rootReducer>;

@@ -29,4 +29,11 @@ module.exports = function (app) {
       changeOrigin: true,
     })
   );
+  app.use(
+    '/api/airports',
+    createProxyMiddleware({
+      target: 'http://localhost:3002',
+      changeOrigin: true,
+    })
+  );
 };

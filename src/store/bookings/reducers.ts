@@ -4,7 +4,7 @@ const initialState: BookingsState = {
   bookings: [],
   loading: false,
   hasErrors: false,
-  total: null
+  total: 0
 }
 
 export default function bookingsReducer(state = initialState,
@@ -15,7 +15,7 @@ export default function bookingsReducer(state = initialState,
     case GET_BOOKINGS_SUCCESS:
       return {bookings: action.payload, total: action.total, loading: false, hasErrors: false}
     case GET_BOOKINGS_FAILURE:
-      return {bookings: [], total: null, loading: false, hasErrors: true}
+      return {bookings: [], total: 0, loading: false, hasErrors: true}
     default:
       return state;
   }

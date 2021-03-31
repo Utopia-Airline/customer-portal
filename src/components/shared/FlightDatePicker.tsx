@@ -4,7 +4,7 @@ import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
 import {TextField} from "@material-ui/core";
 
 import {DateRangePicker, DateRange, DateRangeDelimiter, LocalizationProvider} from '@material-ui/pickers';
-import {makeStyles} from "@material-ui/core/styles";
+import {makeStyles, alpha} from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   root: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   }
 });
 
-const FlightDatePicker = () => {
+const FlightDatePicker = ({handleChange}) => {
   const [value, setValue] = useState<DateRange<Date>>([null, null]);
   const classes = useStyles();
 
@@ -31,7 +31,10 @@ const FlightDatePicker = () => {
         endText="Returning"
         value={value}
         maxDate={getWeeksAfter(value[0], 4)}
-        onChange={(newValue) => setValue(newValue)}
+        onChange={(newValue) => {
+          setValue(newValue);
+          handleChange(newValue);
+        }}
         renderInput={(startProps, endProps) => (
           <>
             <TextField  {...startProps} className='flight-date' color='secondary' helperText={null}/>

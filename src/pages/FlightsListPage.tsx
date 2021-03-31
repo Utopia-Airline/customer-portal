@@ -3,7 +3,6 @@ import {Button, Form} from "react-bootstrap";
 import {connect} from "react-redux";
 import Flight from "../models/Flight";
 import {fetchFlights} from "../store/flights/action";
-import moment from "moment";
 
 const FlightsListPage = ({dispatch, loading, hasErrors, flights}: FlightProps) => {
   useEffect(() => {

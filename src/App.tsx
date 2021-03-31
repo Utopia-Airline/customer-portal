@@ -12,6 +12,7 @@ import UpdatePage from "./pages/UpdatePage";
 import {useEffect} from "react";
 import {getAuth} from "./store/auth/actions";
 import BookingPage from "./pages/BookingPage";
+import BookingGuestPage from "./pages/BookingGuestPage";
 
 
 const App = ({getSession, isLoggedIn, loading}) => {
@@ -24,6 +25,7 @@ const App = ({getSession, isLoggedIn, loading}) => {
       <Header/>
       <div className='full-page'>
         <Switch>
+          <Route exact={true} path="/bookings/guest" component={BookingGuestPage}/>
           <Route exact={true} path="/home" component={Home}/>
           <Route path="/myaccount/update" component={UpdatePage}/>
           {!loading &&

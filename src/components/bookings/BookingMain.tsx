@@ -2,9 +2,9 @@ import React from 'react';
 import Booking from "../../models/Booking";
 import LoadingSpinner from "../shared/LoadingSpinner";
 import ErrorToast from "../shared/ErrorToast";
-import { Button } from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import {connect} from "react-redux";
-import { cancelBooking } from '../../store/booking/actions';
+import {cancelBooking} from '../../store/booking/actions';
 import {
   Accordion,
   AccordionDetails,
@@ -57,8 +57,8 @@ const BookingMain = ({className, booking, loading, hasErrors, userId, dispatch}:
                     <Row className='d-flex p-2'>
                       <Col className='p-2'>
                         <div className='p-1 font-weight-bold'>Departure</div>
-                        <div
-                          className='p-1'>{flight.route.origin.city}, {flight.route.origin.country} ({flight.route.origin.iataId})
+                        <div data-testid={`test-f-${i}`}
+                             className='p-1'>{flight.route.origin.city}, {flight.route.origin.country} ({flight.route.origin.iataId})
                         </div>
                         <div className='p-1 text-secondary' style={{fontSize: "0.75rem"}}>{flight.route.origin.name}</div>
                       </Col>
@@ -108,14 +108,13 @@ const BookingMain = ({className, booking, loading, hasErrors, userId, dispatch}:
           }}>Cancel Booking</Button>}
           {!userId && <Button className='mt-4' onClick={e => {
             dispatch(cancelBooking(url, booking.id));
-            }}>Cancel Booking</Button>}
+          }}>Cancel Booking</Button>}
 
         </div>}
       </div>
     );
   }
 ;
-
 
 
 interface BookingProps {

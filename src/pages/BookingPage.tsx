@@ -7,7 +7,6 @@ import '../styles/components/booking/bookingPage.scss';
 import BookingMain from "../components/bookings/BookingMain";
 import BookingList from "../components/bookings/BookingList";
 import {clearBooking, getBookingById} from "../store/booking/actions";
-import LoadingSpinner from "../components/shared/LoadingSpinner";
 
 
 const BookingPage = ({
@@ -26,7 +25,7 @@ const BookingPage = ({
   function loadBooking(id) {
     console.log('load booking', id);
     dispatch(getBookingById(`${process.env["REACT_APP_BOOKING_URL"]}`, id));
-    console.log(mainRef);
+    // console.log(mainRef);
     mainRef.current.scrollIntoView({behavior: "smooth", block: "start"});
   }
 
@@ -40,7 +39,8 @@ const BookingPage = ({
                    loadBooking={(id) => loadBooking(id)}
                    bookings={bookings} total={total} loading={loading} hasErrors={hasErrors}/>
       <div className='main p-5' ref={mainRef}>
-        <BookingMain className='main p-5' booking={booking} hasErrors={bookingHasErrors} loading={bookingLoading} userId={userId} dispatch={dispatch}/>
+        <BookingMain className='main p-5' booking={booking} hasErrors={bookingHasErrors} loading={bookingLoading}
+                     userId={userId} dispatch={dispatch}/>
       </div>
     </div>
   );

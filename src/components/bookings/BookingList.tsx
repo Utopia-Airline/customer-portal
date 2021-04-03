@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import '../../styles/components/booking/bookingSidebar.scss';
 import Booking from "../../models/Booking";
 import {Badge, ListGroup} from "react-bootstrap";

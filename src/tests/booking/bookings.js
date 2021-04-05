@@ -252,7 +252,7 @@ const bookings={
             "origin": {
               "iataId": "TUK",
               "name": "Turbat International Airport",
-              "city": "Turbat",
+              "city": "Turbate",
               "country": "Pakistan",
               "longitude": 26.0,
               "latitude": 63.0,

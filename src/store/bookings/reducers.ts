@@ -1,4 +1,5 @@
 import {BookingsState, GET_BOOKINGS, GET_BOOKINGS_FAILURE, GET_BOOKINGS_SUCCESS} from "./types";
+import {DELETE_BOOKING_SUCCESS} from "../booking/types";
 
 const initialState: BookingsState = {
   bookings: [],
@@ -16,6 +17,11 @@ export default function bookingsReducer(state = initialState,
       return {bookings: action.payload, total: action.total, loading: false, hasErrors: false}
     case GET_BOOKINGS_FAILURE:
       return {bookings: [], total: 0, loading: false, hasErrors: true}
+    case DELETE_BOOKING_SUCCESS:
+      return {
+        ...state, bookings: state.bookings.filter(booking => booking.id !== action.id)
+        , total: state.bookings.filter(booking => booking.id !== action.id).length
+      }
     default:
       return state;
   }

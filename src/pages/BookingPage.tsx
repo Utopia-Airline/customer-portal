@@ -6,7 +6,7 @@ import Booking from "../models/Booking";
 import '../styles/components/booking/bookingPage.scss';
 import BookingMain from "../components/bookings/BookingMain";
 import BookingList from "../components/bookings/BookingList";
-import {clearBooking, getBookingById} from "../store/booking/actions";
+import {cancelBooking, clearBooking, getBookingById} from "../store/booking/actions";
 
 
 const BookingPage = ({
@@ -33,6 +33,10 @@ const BookingPage = ({
     dispatch(getAllBookings(`${process.env["REACT_APP_BOOKING_URL"]}/${userRole}s?${userRole}Id=${userId}&isActive=${isActive}`));
   }
 
+  function handleDelete(bookingId: number) {
+    dispatch(cancelBooking(url, bookingId));
+  }
+
   return (
     <div className='booking-page'>
       <BookingList className='sidebar' loadBookings={(isActive) => loadBookings(isActive)}
@@ -40,7 +44,7 @@ const BookingPage = ({
                    bookings={bookings} total={total} loading={loading} hasErrors={hasErrors}/>
       <div className='main p-5' ref={mainRef}>
         <BookingMain className='main p-5' booking={booking} hasErrors={bookingHasErrors} loading={bookingLoading}
-                     userId={userId} dispatch={dispatch}/>
+                     handleDelete={handleDelete}/>
       </div>
     </div>
   );

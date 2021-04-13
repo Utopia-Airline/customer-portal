@@ -4,7 +4,11 @@ import {
   SET_QUERIES_SUCCESS,
   SET_QUERIES_FAILURE,
   GET_DEPARTURE_FLIGHTS,
-  GET_DEPARTURE_FLIGHTS_SUCCESS, GET_DEPARTURE_FLIGHTS_FAILURE
+  GET_DEPARTURE_FLIGHTS_SUCCESS,
+  GET_DEPARTURE_FLIGHTS_FAILURE,
+  GET_RETURNING_FLIGHTS,
+  GET_RETURNING_FLIGHTS_SUCCESS,
+  GET_RETURNING_FLIGHTS_FAILURE
 } from "./types";
 
 const initialState: FlightsState = {
@@ -34,6 +38,17 @@ export default function flightsReducer(state = initialState, action): FlightsSta
       }
     case GET_DEPARTURE_FLIGHTS_FAILURE:
       return {...state, departureFlights: {flights: [], total: 0}, loading: false, hasErrors: true}
+    case GET_RETURNING_FLIGHTS:
+      return {...state, loading: true}
+    case GET_RETURNING_FLIGHTS_SUCCESS:
+      return {
+        ...state,
+        returningFlights: {flights: action.payload, total: action.total},
+        loading: false,
+        hasErrors: false
+      }
+    case GET_RETURNING_FLIGHTS_FAILURE:
+      return {...state, returningFlights: {flights: [], total: 0}, loading: false, hasErrors: true}
     case SET_QUERIES:
       return {...state, loading: true}
     case SET_QUERIES_SUCCESS:

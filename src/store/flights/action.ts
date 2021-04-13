@@ -72,6 +72,7 @@ export function fetchFeaturedFlights(url: string) {
 export function fetchFlights(url: string, queries?: Map<string, string>) {
   return async (dispatch) => {
     dispatch(getDepartureFlights())
+    dispatch(getReturningFlights())
     try {
 
       url = queries ? buildQueries(url, queries) : url + "/featured-fares";
@@ -80,11 +81,14 @@ export function fetchFlights(url: string, queries?: Map<string, string>) {
         let data = await res.json();
         console.log('flights total', data);
         dispatch(getDepartureFlightsSuccess(data.departureFlights.flights, data.departureFlights.total));
+        dispatch(getReturningFlightsSuccess(data.returningFlights.flights, data.returningFlights.total));
       } else {
         dispatch(getDepartureFlightsFailure());
+        dispatch(getReturningFlightsFailure());
       }
     } catch (err) {
       dispatch(getDepartureFlightsFailure());
+      dispatch(getReturningFlightsFailure());
     }
   }
 }

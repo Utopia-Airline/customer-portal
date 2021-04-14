@@ -8,7 +8,7 @@ import authReducer from "./auth/reducers";
 import originAirportsReducer from "./airport/origin/reducers";
 import destinationAirportsReducer from "./airport/destination/reducers";
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   auth: authReducer,
   bookings: bookingsReducer,
   booking: bookingReducer,

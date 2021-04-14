@@ -2,9 +2,7 @@ import React from 'react';
 import Booking from "../../models/Booking";
 import LoadingSpinner from "../shared/LoadingSpinner";
 import ErrorToast from "../shared/ErrorToast";
-import { Button } from 'react-bootstrap';
-import {connect} from "react-redux";
-import { cancelBooking } from '../../store/booking/actions';
+import {Button} from 'react-bootstrap';
 import {
   Accordion,
   AccordionDetails,
@@ -18,8 +16,7 @@ import PeopleRoundedIcon from '@material-ui/icons/PeopleRounded';
 import {Col, Row} from "react-bootstrap";
 import {format} from "date-fns";
 
-const BookingMain = ({className, booking, loading, hasErrors, userId, dispatch}: BookingProps) => {
-    const url = process.env["REACT_APP_BOOKING_URL"];
+const BookingMain = ({className, booking, loading, hasErrors, handleDelete}: BookingProps) => {
     return (
       <div className={className}>
         {loading && <LoadingSpinner className="text-center m-5"/>}
@@ -57,8 +54,8 @@ const BookingMain = ({className, booking, loading, hasErrors, userId, dispatch}:
                     <Row className='d-flex p-2'>
                       <Col className='p-2'>
                         <div className='p-1 font-weight-bold'>Departure</div>
-                        <div
-                          className='p-1'>{flight.route.origin.city}, {flight.route.origin.country} ({flight.route.origin.iataId})
+                        <div data-testid={`test-f-${i}`}
+                             className='p-1'>{flight.route.origin.city}, {flight.route.origin.country} ({flight.route.origin.iataId})
                         </div>
                         <div className='p-1 text-secondary' style={{fontSize: "0.75rem"}}>{flight.route.origin.name}</div>
                       </Col>
@@ -103,19 +100,11 @@ const BookingMain = ({className, booking, loading, hasErrors, userId, dispatch}:
               </AccordionDetails>
             </Accordion>
           ))}
-          {userId && <Button className='mt-4' onClick={e => {
-            dispatch(cancelBooking(url, booking.id));
-          }}>Cancel Booking</Button>}
-          {!userId && <Button className='mt-4' onClick={e => {
-            dispatch(cancelBooking(url, booking.id));
-            }}>Cancel Booking</Button>}
-
+          <Button className='mt-4' onClick={e => handleDelete(booking.id)}>Cancel Booking</Button>
         </div>}
       </div>
     );
-  }
-;
-
+  };
 
 
 interface BookingProps {
@@ -123,8 +112,7 @@ interface BookingProps {
   loading?: boolean;
   booking?: Booking;
   hasErrors?: boolean;
-  userId?: number;
-  dispatch?: any;
+  handleDelete?: Function;
 }
 
 

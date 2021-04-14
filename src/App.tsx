@@ -17,7 +17,6 @@ import FlightsListPage from "./pages/FlightsListPage";
 
 const App = ({getSession, isLoggedIn, loading}) => {
   useEffect(() => {
-    console.log('loading', loading);
     getSession(process.env["REACT_APP_SESSION_URL"])
   }, []);
   return (
@@ -26,7 +25,6 @@ const App = ({getSession, isLoggedIn, loading}) => {
       <div className='full-page'>
         <Switch>
           <Route exact={true} path="/bookings/guest" component={BookingGuestPage}/>
-          <Route exact={true} path="/home" component={Home}/>
           <Route exact={true} path="/home" component={HomePage}/>
           <Route path="/myaccount/update" component={UpdatePage}/>
           {!loading &&

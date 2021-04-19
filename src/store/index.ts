@@ -7,6 +7,7 @@ import flightReducer from "./flight/reducers";
 import authReducer from "./auth/reducers";
 import originAirportsReducer from "./airport/origin/reducers";
 import destinationAirportsReducer from "./airport/destination/reducers";
+import chatReducer from "./chat/reducers";
 
 export const rootReducer = combineReducers({
   auth: authReducer,
@@ -15,7 +16,8 @@ export const rootReducer = combineReducers({
   flights: flightsReducer,
   flight: flightReducer,
   originAirports: originAirportsReducer,
-  destinationAirports: destinationAirportsReducer
+  destinationAirports: destinationAirportsReducer,
+  chat: chatReducer
 })
 
 export type RootState = ReturnType<typeof rootReducer>;

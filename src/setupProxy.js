@@ -43,4 +43,14 @@ module.exports = function (app) {
       changeOrigin: true,
     })
   );
+  app.use(
+    '/secured/room',
+    createProxyMiddleware({
+      target: 'http://localhost:8082',
+      changeOrigin: true,
+      ws: true,
+      secure: false,
+      autoRewrite: true
+    })
+  );
 };

@@ -14,6 +14,7 @@ import HomePage from "./pages/HomePage";
 import Footer from "./layout/Footer";
 import FlightSearchPage from "./pages/FlightSearchPage";
 import FlightsListPage from "./pages/FlightsListPage";
+import NeedHelp from "./pages/NeedHelp";
 
 const App = ({getSession, isLoggedIn, loading}) => {
   useEffect(() => {
@@ -24,7 +25,8 @@ const App = ({getSession, isLoggedIn, loading}) => {
       <Header/>
       <div className='full-page'>
         <Switch>
-          <Route exact={true} path="/bookings/guest" component={BookingGuestPage}/>
+          <Route exact={true} path="/mytrips" component={BookingGuestPage}/>
+          <Route exact={true} path="/need-help" component={NeedHelp}/>
           <Route exact={true} path="/home" component={HomePage}/>
           <Route path="/myaccount/update" component={UpdatePage}/>
           {!loading &&

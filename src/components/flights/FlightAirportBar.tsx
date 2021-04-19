@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Autocomplete, Box} from "@material-ui/core";
 import {CircularProgress, TextField} from "@material-ui/core";
 import {getAllOriginAirports} from "../../store/airport/origin/actions";
@@ -8,10 +8,10 @@ import {getAllDestinationAirports} from "../../store/airport/destination/actions
 import Airport from "../../models/Airport";
 
 const FlightAirportBar = ({label, handleChange}) => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const isOrigin = (label.toLowerCase() === 'origin');
-  const [options, setOptions] = React.useState([]);
-  const [destination, setDestination] = React.useState(null);
+  const [options, setOptions] = useState([]);
+  const [destination, setDestination] = useState(null);
   const {airports, total, loading, hasErrors} = useSelector((state: RootState) =>
     isOrigin ? state.originAirports : state.destinationAirports);
   // const loading = open && airports.length === 0;
@@ -116,7 +116,7 @@ const FlightAirportBar = ({label, handleChange}) => {
               ...params.InputProps,
               endAdornment: (
                 <>
-                  {loading ? <CircularProgress color="inherit" size={20}/> : null}
+                  {(loading && open) ? <CircularProgress color="inherit" size={20}/> : null}
                   {params.InputProps.endAdornment}
                 </>
               ),

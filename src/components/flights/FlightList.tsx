@@ -6,8 +6,13 @@ import {Button, Paper} from "@material-ui/core";
 import {Col, Row} from "react-bootstrap";
 import {format} from "date-fns";
 import {Link} from "react-router-dom";
+import Flight from '../../models/Flight';
+import { keepBookingFlight } from '../../store/booking/actions';
 
-const FlightList = ({loading, hasErrors, flights, total}: FlightProps) => {
+
+
+const FlightList = ({dispatch, loading, hasErrors, flights, total}: FlightProps) => {
+
   return (
     <>
       {!loading && hasErrors && <ErrorToast error={hasErrors} message='Something went wrong.'/>}
@@ -56,7 +61,7 @@ const FlightList = ({loading, hasErrors, flights, total}: FlightProps) => {
                   </Col>
                   <Col xs lg="2" className='text-right align-self-center'>
                     <Button variant="contained" size="large" disableElevation className='btn-link'
-                            style={{backgroundColor: "#1a1a1a", margin: 15}} component={Link} to='/bookings'>
+                            style={{backgroundColor: "#1a1a1a", margin: 15}} onClick={() => { dispatch(keepBookingFlight([flight])); }} component={Link} to='/bookings/new'>
                       Book
                     </Button>
                   </Col>
@@ -72,6 +77,7 @@ const FlightList = ({loading, hasErrors, flights, total}: FlightProps) => {
 };
 
 interface FlightProps {
+  dispatch?: Function;
   loading?: boolean;
   flights?: FlightNode[];
   hasErrors?: boolean;

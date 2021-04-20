@@ -41,7 +41,8 @@ export const putBooking = () => ({
 });
 
 export const putBookingSuccess = () => ({
-  type: PUT_BOOKING_SUCCESS
+  type: PUT_BOOKING_SUCCESS,
+  // payload: data
 });
 
 export const putBookingFailure = () => ({
@@ -133,7 +134,7 @@ export function createGuestBooking(url: string, guestBooking: GuestBooking){
   }
 }
 
-export function updateBooking(url: string, passenger: Passenger){
+export function updateBooking(url: string, passenger: Passenger, id: number){
   return async (dispatch) => {
     dispatch(putBooking());
     try {
@@ -148,7 +149,10 @@ export function updateBooking(url: string, passenger: Passenger){
       console.log(JSON.stringify(passenger));
       const res = await fetch(url, options);
       if(res.ok && res.status === 200){
+        let data = await res.json();
+        console.log("data", data);
         dispatch(putBookingSuccess());
+        dispatch(getBookingById("/api/bookings", id))
       } else {
         console.log(res.status);
         dispatch(putBookingFailure());

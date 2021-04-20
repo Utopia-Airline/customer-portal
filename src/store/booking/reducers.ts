@@ -22,6 +22,7 @@ const initialState: BookingState = {
   loading: false,
   hasErrors: false,
   flights: null
+  // passenger: null
 }
 
 export default function bookingReducer(state = initialState,

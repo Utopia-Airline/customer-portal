@@ -26,14 +26,15 @@ const BookingPage = ({
   }, [])
 
   function loadBooking(id) {
-    console.log('load booking', id);
+    
     dispatch(getBookingById(`${process.env["REACT_APP_BOOKING_URL"]}`, id));
-    console.log(mainRef);
+    console.log("booking:", booking);
     mainRef.current.scrollIntoView({behavior: "smooth", block: "start"});
   }
 
   const reloadBooking = (id) => {
-    dispatch(getBookingById(`${process.env["REACT_APP_BOOKING_URL"]}`, id));
+    // dispatch(getBookingById(`${process.env["REACT_APP_BOOKING_URL"]}`, id));
+    loadBooking(id);
     setUpdated(!updated);
   }
 

@@ -1,11 +1,13 @@
 import Booking from "../../models/Booking";
 import Flight from "../../models/Flight";
+import Passenger from "../../models/Passenger";
 
 export interface BookingState {
   booking: Booking;
   loading: boolean;
   hasErrors: boolean;
   flights: Flight[];
+  // passenger: Passenger;
 }
 
 /// GET BookingMain by id

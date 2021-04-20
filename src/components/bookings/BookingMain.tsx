@@ -56,9 +56,10 @@ const BookingMain = ({className, booking, loading, hasErrors, userId, dispatch, 
 
   function editPassenger(id: number){
     const url = '/api/passengers/';
-    dispatch(updateBooking(url+id, {givenName, familyName, dob, gender, address}));
+    console.log("passenger",url+id, {givenName, familyName, dob, gender, address});
+    dispatch(updateBooking(url+id, {givenName, familyName, dob, gender, address}, booking.id));
     setOpen(false);
-    reloadBooking(booking.id);
+    // reloadBooking(booking.id);
   }
 
   function handleClickOpen(passenger: Passenger) {

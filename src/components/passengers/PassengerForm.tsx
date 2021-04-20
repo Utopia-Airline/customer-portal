@@ -2,6 +2,9 @@ import { Button, Card, CardActions, CardContent, TextField, MenuItem, Typography
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { makeStyles } from '@material-ui/core/styles';
+import {addWeeks} from "date-fns";
+import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
+import {DateRangeDelimiter, LocalizationProvider, DatePicker, DateRange} from '@material-ui/pickers';
 
 const genders = [
     {
@@ -28,11 +31,16 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 const PassengerForm = ({handleAdd}: PassengerProp) => {
+
+    function getWeeksAfter(date: Date, amount: number) {
+        return date ? addWeeks(date, amount) : undefined;
+      }
+
     const classes = useStyles();
 
     const [givenName, setGivenName] = useState("");
     const [familyName, setFamilyName] = useState("");
-    const [dob, setDOB] = useState("");
+    const [dob, setDOB] = useState<DateRange<Date>>([null, null]);
     const [gender, setGender] = useState("");
     const [address, setAddress] = useState("");
 
@@ -47,7 +55,21 @@ const PassengerForm = ({handleAdd}: PassengerProp) => {
                                 <TextField placeholder="Family Name" onChange={e => setFamilyName(e.target.value)}/>
                             </div>
                             <div>
-                                <TextField placeholder="Date Of Birth" onChange={e => setDOB(e.target.value)}/>
+                                {/* <TextField placeholder="Date Of Birth" onChange={e => setDOB(e.target.value)}/> */}
+                                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                    <DatePicker
+                                        disablePast
+                                        value={dob}
+                                        onChange={(newValue) => {
+                                        setDOB(newValue);
+                                        }}
+                                        renderInput={(props) => (
+                                        <>
+                                            <TextField  {...props} className='birth-date' color='secondary' helperText={null}/>
+                                        </>
+                                        )}
+                                    />
+                                </LocalizationProvider>
                                 <TextField id="select-gender" select label="Gender" value={gender}  onChange={e => setGender(e.target.value)} helperText="Please Select a Gender">
                                     {genders.map((option) => (
                                         <MenuItem key={option.value} value={option.value}>

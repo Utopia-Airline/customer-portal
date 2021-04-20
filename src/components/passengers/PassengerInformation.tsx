@@ -7,8 +7,8 @@ const PassengerInformation = ({ passengers, handleRemove }: PassengerProp) => {
     return (
         <div>
             {passengers.length > 0 && passengers.map((passenger, i) => (
-                <div className="m-3">
-                    <Accordion key={i}>
+                <div className="m-3" key={i}>
+                    <Accordion>
                         <AccordionSummary expandIcon={<ExpandMoreIcon/>}>
                             <div style={{color: "#1a1a1a", fontSize: "1.1rem"}}>
                                 {passenger.givenName} {passenger.familyName}

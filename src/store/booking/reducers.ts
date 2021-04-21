@@ -1,5 +1,4 @@
 import {
-  BookingActionTypes,
   BookingState,
   CLEAR_BOOKING,
   DELETE_BOOKING,
@@ -51,7 +50,7 @@ export default function bookingReducer(state = initialState,
     case DELETE_BOOKING:
       return {...state, loading: true}
     case DELETE_BOOKING_SUCCESS:
-      return {...state, loading: false, hasErrors: false}
+      return {...state, booking: null, loading: false, hasErrors: false}
     case DELETE_BOOKING_FAILURE:
       return {...state, loading: false, hasErrors: true}
     case KEEP_BOOKING_FLIGHT:

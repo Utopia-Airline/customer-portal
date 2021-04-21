@@ -42,7 +42,7 @@ const genders = [
   }
 ]
 
-const BookingMain = ({className, booking, loading, hasErrors, userId, dispatch, reloadBooking}: BookingProps) => {
+const BookingMain = ({className, booking, loading, hasErrors, userId, dispatch, reloadBooking, handleDelete}: BookingProps) => {
 
   const [open, setOpen] = React.useState(false);
   const [givenName, setGivenName] = React.useState("");
@@ -113,8 +113,8 @@ const BookingMain = ({className, booking, loading, hasErrors, userId, dispatch, 
                     <Row className='d-flex p-2'>
                       <Col className='p-2'>
                         <div className='p-1 font-weight-bold'>Departure</div>
-                        <div
-                          className='p-1'>{flight.route.origin.city}, {flight.route.origin.country} ({flight.route.origin.iataId})
+                        <div data-testid={`test-f-${i}`}
+                             className='p-1'>{flight.route.origin.city}, {flight.route.origin.country} ({flight.route.origin.iataId})
                         </div>
                         <div className='p-1 text-secondary' style={{fontSize: "0.75rem"}}>{flight.route.origin.name}</div>
                       </Col>
@@ -187,19 +187,11 @@ const BookingMain = ({className, booking, loading, hasErrors, userId, dispatch, 
               </AccordionDetails>
             </Accordion>
           ))}
-          {userId && booking.isActive && <Button className='mt-4' onClick={e => {
-            dispatch(cancelBooking(url, booking.id));
-          }}>Cancel Booking</Button>}
-          {!userId && booking.isActive && <Button className='mt-4' onClick={e => {
-            dispatch(cancelBooking(url, booking.id));
-            }}>Cancel Booking</Button>}
-
+          {booking.isActive && <Button className='mt-4' onClick={e => handleDelete(booking.id)}>Cancel Booking</Button>}
         </div>}
       </div>
     );
-  }
-;
-
+  };
 
 
 interface BookingProps {
@@ -210,6 +202,7 @@ interface BookingProps {
   userId?: number;
   dispatch?: any;
   reloadBooking?: Function;
+  handleDelete?: Function;
 }
 
 

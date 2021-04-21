@@ -5,9 +5,9 @@ import Passenger from "../../models/Passenger";
 import {
   DELETE_BOOKING,
   DELETE_BOOKING_SUCCESS,
-  DELETE_BOOKING_FAILURE, 
-  GET_BOOKING, 
-  GET_BOOKING_FAILURE, 
+  DELETE_BOOKING_FAILURE,
+  GET_BOOKING,
+  GET_BOOKING_FAILURE,
   GET_BOOKING_SUCCESS,
   CLEAR_BOOKING, 
   POST_BOOKING, 
@@ -168,15 +168,16 @@ export const deleteBooking = () => ({
   type: DELETE_BOOKING
 });
 
-export const deleteBookingSuccess = () => ({
-  type: DELETE_BOOKING_SUCCESS
+export const deleteBookingSuccess = (id: number) => ({
+  type: DELETE_BOOKING_SUCCESS,
+  id
 });
 
 export const deleteBookingFailure = () => ({
   type: DELETE_BOOKING_FAILURE
 });
 
-export function cancelBooking(url: string, id: number){
+export function cancelBooking(url: string, id: number) {
   return async (dispatch) => {
     dispatch(deleteBooking());
     try {
@@ -184,12 +185,12 @@ export function cancelBooking(url: string, id: number){
         method: 'delete'
       }
       const res = await fetch(`${url}/${id}`, options);
-      if(res.ok && res.status === 204) {
-        dispatch(deleteBookingSuccess());
+      if (res.ok && res.status === 204) {
+        dispatch(deleteBookingSuccess(id));
       } else {
         dispatch(deleteBookingFailure());
       }
-    } catch(err) {
+    } catch (err) {
       dispatch(deleteBookingFailure());
     }
   }

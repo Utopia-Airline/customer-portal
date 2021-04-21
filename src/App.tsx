@@ -18,7 +18,6 @@ import BookingCreationPage from "./pages/BookingCreationPage";
 
 const App = ({getSession, isLoggedIn, loading, numPassengers}) => {
   useEffect(() => {
-    console.log('loading', loading);
     getSession(process.env["REACT_APP_SESSION_URL"])
   }, []);
   return (

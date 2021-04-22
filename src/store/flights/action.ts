@@ -5,9 +5,14 @@ import {
   GET_DEPARTURE_FLIGHTS,
   GET_DEPARTURE_FLIGHTS_SUCCESS,
   GET_DEPARTURE_FLIGHTS_FAILURE,
-  GET_RETURNING_FLIGHTS, GET_RETURNING_FLIGHTS_SUCCESS, GET_RETURNING_FLIGHTS_FAILURE
+  GET_RETURNING_FLIGHTS, GET_RETURNING_FLIGHTS_SUCCESS, GET_RETURNING_FLIGHTS_FAILURE, SET_PASSENGERS
 } from "./types";
 import {FlightNode} from "../../models/FlightNode";
+
+export const setPassengers = (passengers: number) => ({
+  type: SET_PASSENGERS,
+  payload: passengers
+});
 
 export const getDepartureFlights = () => ({
   type: GET_DEPARTURE_FLIGHTS

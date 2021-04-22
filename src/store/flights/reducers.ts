@@ -4,6 +4,7 @@ import {
   SET_QUERIES_SUCCESS,
   SET_QUERIES_FAILURE,
   GET_DEPARTURE_FLIGHTS,
+  SET_PASSENGERS,
   GET_DEPARTURE_FLIGHTS_SUCCESS,
   GET_DEPARTURE_FLIGHTS_FAILURE,
   GET_RETURNING_FLIGHTS,
@@ -22,7 +23,8 @@ const initialState: FlightsState = {
   },
   loading: false,
   hasErrors: false,
-  queries: null
+  queries: null,
+  passengers: 0
 }
 
 export default function flightsReducer(state = initialState, action): FlightsState {
@@ -55,6 +57,8 @@ export default function flightsReducer(state = initialState, action): FlightsSta
       return {...state, queries: action.payload, loading: false, hasErrors: false}
     case SET_QUERIES_FAILURE:
       return {...state, queries: null, loading: false, hasErrors: true}
+    case SET_PASSENGERS:
+      return {...state, passengers: parseInt(action.payload)}
     default:
       return state;
   }

@@ -14,8 +14,9 @@ import HomePage from "./pages/HomePage";
 import Footer from "./layout/Footer";
 import FlightSearchPage from "./pages/FlightSearchPage";
 import FlightsListPage from "./pages/FlightsListPage";
+import BookingCreationPage from "./pages/BookingCreationPage";
 
-const App = ({getSession, isLoggedIn, loading}) => {
+const App = ({getSession, isLoggedIn, loading, numPassengers}) => {
   useEffect(() => {
     getSession(process.env["REACT_APP_SESSION_URL"])
   }, []);
@@ -24,11 +25,14 @@ const App = ({getSession, isLoggedIn, loading}) => {
       <Header/>
       <div className='full-page'>
         <Switch>
+          <Route exact={true} path="/bookings/new" component={BookingCreationPage}>
+            {numPassengers > 0 ? <BookingCreationPage/> : <Redirect push to='/home'/>}
+          </Route>
           <Route exact={true} path="/bookings/guest" component={BookingGuestPage}/>
           <Route exact={true} path="/home" component={HomePage}/>
           <Route path="/myaccount/update" component={UpdatePage}/>
           {!loading &&
-          <Route path="/bookings">
+          <Route exact={true} path="/bookings">
             {isLoggedIn ? <BookingPage/> : <Redirect push to='/login'/>}
           </Route>
           }
@@ -60,7 +64,8 @@ const App = ({getSession, isLoggedIn, loading}) => {
 };
 const mapStateToProps = state => ({
     isLoggedIn: state.auth.isLoggedIn,
-    loading: state.auth.loading
+    loading: state.auth.loading,
+    numPassengers: state.flights.passengers
   }
 );
 const mapDispatchToProps = {

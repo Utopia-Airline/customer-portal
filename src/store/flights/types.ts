@@ -12,6 +12,7 @@ export interface FlightsState {
   loading: boolean;
   hasErrors: boolean;
   queries: Map<string, string>;
+  passengers: number;
 }
 
 export const GET_DEPARTURE_FLIGHTS = 'GET_DEPARTURE_FLIGHTS';
@@ -25,3 +26,5 @@ export const GET_RETURNING_FLIGHTS_FAILURE = 'GET_RETURNING_FLIGHTS_FAILURE';
 export const SET_QUERIES = 'SET_QUERIES';
 export const SET_QUERIES_SUCCESS = 'SET_QUERIES_SUCCESS';
 export const SET_QUERIES_FAILURE = 'SET_QUERIES_FAILURE';
+
+export const SET_PASSENGERS = 'SET_PASSENGERS';

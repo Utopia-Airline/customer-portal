@@ -3,8 +3,8 @@ import GuestContact from "./GuestContact";
 import Passenger from "./Passenger";
 import Flight from "./Flight";
 
-export default class Booking {
-  public constructor(init?: Partial<Booking>) {
+export default class BookingCreation {
+  public constructor(init?: Partial<BookingCreation>) {
     Object.assign(this, init);
   }
 
@@ -17,6 +17,6 @@ export default class Booking {
   user?: User;
   guest?: GuestContact;
   passengers: Passenger[];
-  flights: Flight[];
+  flights: {id: number}[];
   totalPrice?: number;
 }

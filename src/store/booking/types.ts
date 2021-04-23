@@ -1,9 +1,13 @@
 import Booking from "../../models/Booking";
+import Flight from "../../models/Flight";
+import Passenger from "../../models/Passenger";
 
 export interface BookingState {
   booking: Booking;
   loading: boolean;
   hasErrors: boolean;
+  flights: Flight[];
+  // passenger: Passenger;
 }
 
 /// GET BookingMain by id
@@ -11,6 +15,7 @@ export const GET_BOOKING = 'GET_BOOKING';
 export const GET_BOOKING_SUCCESS = 'GET_BOOKING_SUCCESS';
 export const GET_BOOKING_FAILURE = 'GET_BOOKING_FAILURE';
 export const CLEAR_BOOKING = 'CLEAR_BOOKING';
+export const KEEP_BOOKING_FLIGHT = 'KEEP_BOOKING_FLIGHT';
 
 interface GetBookingAction {
   type: typeof GET_BOOKING
@@ -40,6 +45,23 @@ interface PostBookingSuccessAction {
 
 interface PostBookingFailureAction {
   type: typeof POST_BOOKING_FAILURE
+}
+
+/// PUT Booking for flight
+export const PUT_BOOKING = 'PUT_BOOKING';
+export const PUT_BOOKING_SUCCESS = 'PUT_BOOKING_SUCCESS';
+export const PUT_BOOKING_FAILURE = 'PUT_BOOKING_FAILURE';
+
+interface PutBookingAction {
+  type: typeof PUT_BOOKING
+}
+
+interface PutBookingSuccessAction {
+  type: typeof PUT_BOOKING_SUCCESS
+}
+
+interface PutBookingFailureAction {
+  type: typeof PUT_BOOKING_FAILURE
 }
 
 /// DELETE Booking for flight

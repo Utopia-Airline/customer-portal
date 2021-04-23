@@ -23,6 +23,13 @@ module.exports = function (app) {
     })
   );
   app.use(
+    '/api/passengers',
+    createProxyMiddleware({
+      target: 'http://localhost:3000',
+      changeOrigin: true,
+    })
+  );
+  app.use(
     '/api/bookings/users',
     createProxyMiddleware({
       target: 'http://localhost:3000',

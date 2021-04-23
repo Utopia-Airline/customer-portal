@@ -16,6 +16,8 @@ const BookingPage = ({
   const [isActive, setIsActive] = useState(true);
   const mainRef = useRef<HTMLDivElement>();
   const url = `${process.env["REACT_APP_BOOKING_URL"]}`;
+  const [updated, setUpdated] = useState(true);
+
   useEffect(() => {
     console.log('get all bookings', userId, userRole);
     dispatch(clearBooking())
@@ -23,10 +25,16 @@ const BookingPage = ({
   }, [])
 
   function loadBooking(id) {
-    console.log('load booking', id);
+    
     dispatch(getBookingById(`${process.env["REACT_APP_BOOKING_URL"]}`, id));
     // console.log(mainRef);
     mainRef.current.scrollIntoView({behavior: "smooth", block: "start"});
+  }
+
+  const reloadBooking = (id) => {
+    // dispatch(getBookingById(`${process.env["REACT_APP_BOOKING_URL"]}`, id));
+    loadBooking(id);
+    setUpdated(!updated);
   }
 
   function loadBookings(isActive = true) {
@@ -43,8 +51,8 @@ const BookingPage = ({
                    loadBooking={(id) => loadBooking(id)}
                    bookings={bookings} total={total} loading={loading} hasErrors={hasErrors}/>
       <div className='main p-5' ref={mainRef}>
-        <BookingMain className='main p-5' booking={booking} hasErrors={bookingHasErrors} loading={bookingLoading}
-                     handleDelete={handleDelete}/>
+        <BookingMain className='main p-5' booking={booking} hasErrors={bookingHasErrors} loading={bookingLoading} userId={userId} 
+                    dispatch={dispatch} reloadBooking={reloadBooking} handleDelete={handleDelete}/>
       </div>
     </div>
   );

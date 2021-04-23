@@ -8,6 +8,7 @@ import LinearProgress from "../components/shared/LinearProgress";
 import {Button} from '@material-ui/core';
 import {makeStyles, Theme, withStyles} from "@material-ui/core/styles";
 import {grey} from "@material-ui/core/colors";
+import {disconnect} from "../store/chat/action";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -43,8 +44,9 @@ const Header = ({dispatch, isLoggedIn, user, hasErrors, loading}: UserProps) => 
           <Nav className="mr-auto">
             <Link className="nav-link" to='/home'>Home</Link>
             <Link className="nav-link" to='/flights'>Top flights</Link>
-            <Link className="nav-link" to='/flights'>My trips</Link>
+            <Link className="nav-link" to='/mytrips'>My trips</Link>
             <Link className="nav-link" to='/flights'>Flight status</Link>
+            <Link className="nav-link" to='/need-help'>Need help?</Link>
           </Nav>
           {user && <Nav>
             <NavDropdown title={user.username} alignRight id="collapsible-nav-dropdown">
@@ -58,6 +60,7 @@ const Header = ({dispatch, isLoggedIn, user, hasErrors, loading}: UserProps) => 
                       history.push('/home');
                     else
                       history.push('/home');
+                    dispatch(disconnect('disconnect'));
                   })
                 }}>Logout</NavDropdown.Item>
             </NavDropdown>
